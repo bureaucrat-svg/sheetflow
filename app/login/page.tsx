@@ -75,64 +75,62 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-64px)] w-full flex items-center justify-center p-4 md:p-8 relative overflow-hidden bg-muted/30">
-      <div className="w-full max-w-[420px] space-y-6 relative">
-        {/* Compact Logo Section */}
-        <div className="flex flex-col items-center text-center space-y-3 mb-2">
+    <div className="min-h-[calc(100vh-64px)] w-full flex items-center justify-center p-4 md:p-8 bg-[#f6f6f7]">
+      <div className="w-full max-w-[440px] space-y-10 relative">
+        {/* Branding Section */}
+        <div className="flex flex-col items-center text-center space-y-4">
            <Link href="/" className="group">
-              <div className="h-12 w-12 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-500">
-                <FileSpreadsheet className="h-6 w-6" />
+              <div className="h-14 w-14 bg-white border border-[#e1e3e5] rounded-2xl flex items-center justify-center text-[#008060] shadow-xs group-hover:border-[#008060] transition-all duration-300">
+                <FileSpreadsheet className="h-8 w-8" />
               </div>
            </Link>
-           <div className="space-y-0.5">
-              <h1 className="text-xl font-black tracking-tight text-foreground uppercase italic">SheetFlow</h1>
-              <div className="flex items-center justify-center gap-1.5 text-[10px] font-black text-muted-foreground tracking-widest opacity-60">
-                 <ShieldCheck className="h-3 w-3" />
-                 <span>SECURE PIPELINE</span>
-              </div>
+           <div className="space-y-1">
+              <h1 className="text-2xl font-black tracking-tighter text-[#202223] uppercase italic">SheetFlow</h1>
+              <p className="text-[#6d7175] text-[11px] font-bold uppercase tracking-[0.2em] opacity-80">
+                 Administrative Portal
+              </p>
            </div>
         </div>
 
-        <Card className="border shadow-sm rounded-lg overflow-hidden bg-background">
-          <div className="h-1.5 bg-linear-to-r from-primary to-emerald-500 w-full" />
-          <CardHeader className="space-y-1 pt-6 text-center">
-            <CardTitle className="text-xl font-black tracking-tight uppercase italic">Authentication</CardTitle>
-            <CardDescription className="text-xs font-medium">
-              Access your automated workflows
+        <Card className="border border-[#e1e3e5] shadow-xs rounded-lg overflow-hidden bg-white">
+          <CardHeader className="space-y-1 pt-8 text-center px-10">
+            <CardTitle className="text-xl font-black tracking-tighter text-[#202223] uppercase italic">Identity Verification</CardTitle>
+            <CardDescription className="text-xs font-medium text-[#6d7175]">
+              Access your automated data pipelines
             </CardDescription>
           </CardHeader>
-          <CardContent className="px-6 pb-8">
+          <CardContent className="px-10 pb-10 pt-4">
             <Tabs defaultValue="login" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-6 rounded-lg p-1 h-12 bg-muted/50 border">
-                <TabsTrigger value="login" className="rounded-md text-xs font-black uppercase tracking-widest data-[state=active]:shadow-sm data-[state=active]:bg-background transition-all cursor-pointer">Sign In</TabsTrigger>
-                <TabsTrigger value="register" className="rounded-md text-xs font-black uppercase tracking-widest data-[state=active]:shadow-sm data-[state=active]:bg-background transition-all cursor-pointer">Join</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-2 mb-8 rounded-lg p-1 h-11 bg-[#f1f2f3] border border-[#e1e3e5]">
+                <TabsTrigger value="login" className="rounded-md text-[10px] font-black uppercase tracking-widest data-[state=active]:shadow-xs data-[state=active]:bg-white data-[state=active]:text-[#008060] transition-all">Sign In</TabsTrigger>
+                <TabsTrigger value="register" className="rounded-md text-[10px] font-black uppercase tracking-widest data-[state=active]:shadow-xs data-[state=active]:bg-white data-[state=active]:text-[#008060] transition-all">Register</TabsTrigger>
               </TabsList>
 
               <TabsContent value="login">
-                <form onSubmit={handleLogin} className="grid gap-5">
-                  <div className="grid gap-4">
-                    <div className="grid gap-1.5">
-                      <Label htmlFor="email" className="font-black text-[10px] uppercase tracking-widest text-muted-foreground ml-0.5">Work Email</Label>
+                <form onSubmit={handleLogin} className="grid gap-6">
+                  <div className="grid gap-5">
+                    <div className="grid gap-2">
+                      <Label htmlFor="email" className="font-black text-[9px] uppercase tracking-widest text-[#6d7175] ml-0.5">Account Email</Label>
                       <div className="relative group">
-                        <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-[#6d7175] group-focus-within:text-[#008060] transition-colors opacity-40" />
                         <Input
                           id="email"
                           type="email"
-                          placeholder="name@company.com"
+                          placeholder="admin@enterprise.com"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           required
-                          className="pl-10 h-11 rounded-lg border focus:border-primary transition-all bg-muted/5 focus:bg-background text-sm"
+                          className="pl-11 h-12 rounded-lg border-[#e1e3e5] focus:border-[#008060] transition-all bg-[#f9fafb] text-sm shadow-inner"
                         />
                       </div>
                     </div>
-                    <div className="grid gap-1.5">
+                    <div className="grid gap-2">
                       <div className="flex items-center justify-between ml-0.5">
-                        <Label htmlFor="password" className="font-black text-[10px] uppercase tracking-widest text-muted-foreground">Security Key</Label>
-                        <Link href="#" className="text-[9px] font-black uppercase text-primary hover:underline">Forgot?</Link>
+                        <Label htmlFor="password" className="font-black text-[9px] uppercase tracking-widest text-[#6d7175]">Security Key</Label>
+                        <Link href="#" className="text-[9px] font-black uppercase text-[#008060] hover:underline">Reset?</Link>
                       </div>
                       <div className="relative group">
-                        <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                        <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-[#6d7175] group-focus-within:text-[#008060] transition-colors opacity-40" />
                         <Input
                           id="password"
                           type="password"
@@ -140,82 +138,80 @@ export default function LoginPage() {
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           required
-                          className="pl-10 h-11 rounded-lg border focus:border-primary transition-all bg-muted/5 focus:bg-background text-sm"
+                          className="pl-11 h-12 rounded-lg border-[#e1e3e5] focus:border-[#008060] transition-all bg-[#f9fafb] text-sm shadow-inner"
                         />
                       </div>
                     </div>
                   </div>
-                  <Button className="w-full h-11 cursor-pointer rounded-lg gap-2 shadow-md hover:shadow-primary/20 transition-all font-black text-xs uppercase tracking-widest group relative overflow-hidden" type="submit" disabled={isPending}>
-                    <div className="absolute inset-0 bg-linear-to-r from-primary to-emerald-600 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 -z-10"></div>
-                    {isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <LogIn className="h-4 w-4 group-hover:translate-x-1 transition-transform" />}
-                    Enter Workspace
+                  <Button className="w-full h-12 bg-[#008060] hover:bg-[#006e52] text-white rounded-lg gap-3 shadow-sm font-black text-xs uppercase tracking-widest transition-all mt-2" type="submit" disabled={isPending}>
+                    {isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <LogIn className="h-4 w-4" />}
+                    Enter Pipeline
                   </Button>
                 </form>
               </TabsContent>
 
               <TabsContent value="register">
-                <form onSubmit={handleSignUp} className="grid gap-4">
-                  <div className="grid gap-3">
-                    <div className="grid gap-1.5">
-                      <Label htmlFor="reg-name" className="font-black text-[10px] uppercase tracking-widest text-muted-foreground ml-0.5">Full Identity</Label>
+                <form onSubmit={handleSignUp} className="grid gap-5">
+                  <div className="grid gap-4">
+                    <div className="grid gap-2">
+                      <Label htmlFor="reg-name" className="font-black text-[9px] uppercase tracking-widest text-[#6d7175] ml-0.5">Full Name</Label>
                       <div className="relative group">
-                        <User className="absolute left-3.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                        <User className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-[#6d7175] group-focus-within:text-[#008060] transition-colors opacity-40" />
                         <Input
                           id="reg-name"
                           type="text"
-                          placeholder="Alex Rivera"
+                          placeholder="Sarah Connor"
                           value={fullName}
                           onChange={(e) => setFullName(e.target.value)}
                           required
-                          className="pl-10 h-11 rounded-lg border focus:border-primary transition-all bg-muted/5 focus:bg-background text-sm"
+                          className="pl-11 h-12 rounded-lg border-[#e1e3e5] focus:border-[#008060] transition-all bg-[#f9fafb] text-sm shadow-inner"
                         />
                       </div>
                     </div>
-                    <div className="grid gap-1.5">
-                      <Label htmlFor="reg-email" className="font-black text-[10px] uppercase tracking-widest text-muted-foreground ml-0.5">Work Email</Label>
+                    <div className="grid gap-2">
+                      <Label htmlFor="reg-email" className="font-black text-[9px] uppercase tracking-widest text-[#6d7175] ml-0.5">Work Email</Label>
                       <div className="relative group">
-                        <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-[#6d7175] group-focus-within:text-[#008060] transition-colors opacity-40" />
                         <Input
                           id="reg-email"
                           type="email"
-                          placeholder="alex@company.com"
+                          placeholder="sarah@skynet.com"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           required
-                          className="pl-10 h-11 rounded-lg border focus:border-primary transition-all bg-muted/5 focus:bg-background text-sm"
+                          className="pl-11 h-12 rounded-lg border-[#e1e3e5] focus:border-[#008060] transition-all bg-[#f9fafb] text-sm shadow-inner"
                         />
                       </div>
                     </div>
-                    <div className="grid gap-1.5">
+                    <div className="grid gap-2">
                       <div className="flex items-center justify-between ml-0.5">
-                        <Label htmlFor="reg-password" className="font-black text-[10px] uppercase tracking-widest text-muted-foreground">New Security Key</Label>
+                        <Label htmlFor="reg-password" className="font-black text-[9px] uppercase tracking-widest text-[#6d7175]">Create Security Key</Label>
                         <button
                           type="button"
                           onClick={suggestPassword}
-                          className="text-[9px] font-black uppercase text-primary hover:underline flex items-center gap-1"
+                          className="text-[9px] font-black uppercase text-[#008060] hover:underline flex items-center gap-1.5"
                         >
                           <Sparkles className="h-3 w-3" />
-                          Auto-Generate
+                          Suggest
                         </button>
                       </div>
                       <div className="relative group">
-                        <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                        <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-[#6d7175] group-focus-within:text-[#008060] transition-colors opacity-40" />
                         <Input
                           id="reg-password"
                           type="password"
-                          placeholder="Min 6 characters"
+                          placeholder="Minimum 6 characters"
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           required
-                          className="pl-10 h-11 rounded-lg border focus:border-primary transition-all bg-muted/5 focus:bg-background text-sm"
+                          className="pl-11 h-12 rounded-lg border-[#e1e3e5] focus:border-[#008060] transition-all bg-[#f9fafb] text-sm shadow-inner"
                         />
                       </div>
                     </div>
                   </div>
-                  <Button className="w-full h-11 rounded-lg gap-2 shadow-md hover:shadow-primary/20 transition-all font-black text-xs uppercase tracking-widest group relative overflow-hidden mt-2" type="submit" disabled={isPending}>
-                    <div className="absolute inset-0 bg-linear-to-r from-primary to-emerald-600 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 -z-10"></div>
-                    {isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <UserPlus className="h-4 w-4 group-hover:scale-110 transition-transform" />}
-                    Create Pipeline
+                  <Button className="w-full h-12 bg-[#008060] hover:bg-[#006e52] text-white rounded-lg gap-3 shadow-sm font-black text-xs uppercase tracking-widest transition-all mt-4" type="submit" disabled={isPending}>
+                    {isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <UserPlus className="h-4 w-4" />}
+                    Deploy Account
                   </Button>
                 </form>
               </TabsContent>
@@ -223,18 +219,20 @@ export default function LoginPage() {
           </CardContent>
         </Card>
         
-        {/* Compact Benefits */}
-        <div className="grid grid-cols-3 gap-3">
-           {[
-             { icon: Zap, label: "Instant", color: "text-yellow-500" },
-             { icon: ShieldCheck, label: "Secure", color: "text-emerald-500" },
-             { icon: FileSpreadsheet, label: "Open", color: "text-primary" }
-           ].map((item, i) => (
-             <div key={i} className="flex flex-col items-center gap-1 opacity-40 hover:opacity-100 transition-opacity">
-                <item.icon className={cn("h-3.5 w-3.5", item.color)} />
-                <span className="text-[8px] font-black uppercase tracking-widest">{item.label}</span>
-             </div>
-           ))}
+        {/* Verification Badges */}
+        <div className="flex items-center justify-center gap-10 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all">
+           <div className="flex flex-col items-center gap-1.5">
+              <ShieldCheck className="h-4 w-4 text-[#008060]" />
+              <span className="text-[8px] font-black uppercase tracking-[0.2em]">Verified</span>
+           </div>
+           <div className="flex flex-col items-center gap-1.5">
+              <Zap className="h-4 w-4 text-[#008060]" />
+              <span className="text-[8px] font-black uppercase tracking-[0.2em]">Realtime</span>
+           </div>
+           <div className="flex flex-col items-center gap-1.5">
+              <FileSpreadsheet className="h-4 w-4 text-[#008060]" />
+              <span className="text-[8px] font-black uppercase tracking-[0.2em]">Validated</span>
+           </div>
         </div>
       </div>
     </div>

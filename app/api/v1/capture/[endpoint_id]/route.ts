@@ -69,12 +69,20 @@ export async function POST(
     // Forward to Google Script URL if available
     if (endpoint.googleScriptUrl) {
       try {
-        await axios.post(endpoint.googleScriptUrl, validationResult.data, {
-          timeout: 5000, // 5 second timeout
+        const response = await axios.post(endpoint.googleScriptUrl, validationResult.data, {
+          timeout: 10000, // Increase timeout to 10 seconds
         });
+        console.log("Google Script Response:", response.status, response.data);
       } catch (error: any) {
         console.error("Failed to forward to Google Script:", error.message);
-        // We still return 200 to the client, but maybe log this failure
+        if (error.response) {
+          console.error("Google Script Error Response:", error.response.status, error.response.data);
+        }
+        return NextResponse.json({ 
+          status: "partial_success", 
+          error: "Failed to forward to Google Sheets",
+          details: error.message 
+        }, { status: 502 });
       }
     }
 

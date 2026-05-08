@@ -67,154 +67,155 @@ export function NewEndpointForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8 max-w-4xl mx-auto pb-32 px-4">
-      {/* Header Section - More Compact */}
-      <div className="flex flex-col md:flex-row items-center gap-6 bg-background p-6 rounded-lg border shadow-sm">
-        <Link href="/dashboard">
-          <Button variant="outline" size="icon" type="button" className="rounded-lg h-10 w-10 border hover:bg-muted/50 transition-all">
-            <ArrowLeft className="h-4 w-4" />
-          </Button>
-        </Link>
-        <div className="space-y-1 text-center md:text-left flex-1">
-          <div className="flex items-center justify-center md:justify-start gap-2 text-primary font-bold tracking-widest text-[10px] uppercase">
-             <Sparkles className="h-3.5 w-3.5" />
-             <span>New Pipeline</span>
-          </div>
-          <h1 className="text-2xl md:text-3xl font-black tracking-tight text-foreground">Create Flow</h1>
-          <p className="text-muted-foreground text-sm">
-            Configure your data structure and sheet connection.
-          </p>
-        </div>
-      </div>
-
-      <div className="grid gap-8">
-        {/* Step 1: Identity */}
-        <Card className="rounded-lg border shadow-sm overflow-hidden bg-background">
-          <CardHeader className="bg-muted/30 pb-4 pt-4 px-6 border-b">
-            <div className="flex items-center gap-3">
-               <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center text-white shadow-sm">
-                  <Layout className="h-4 w-4" />
-               </div>
-               <CardTitle className="text-lg font-bold">1. Flow Identity</CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent className="p-6">
-            <div className="grid md:grid-cols-1 gap-6">
-               <div className="space-y-2">
-                  <Label htmlFor="name" className="text-sm font-bold">Flow Name</Label>
-                  <Input
-                    id="name"
-                    placeholder="e.g. Stripe New Customers"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                    className="h-12 rounded-lg text-base border focus:border-primary transition-all bg-muted/5"
-                  />
-                  <p className="text-[11px] text-muted-foreground italic">
-                     A descriptive name for your dashboard tracking.
-                  </p>
-               </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Step 2: Schema */}
-        <Card className="rounded-lg border shadow-sm overflow-hidden bg-background">
-          <CardHeader className="bg-muted/30 pb-4 pt-4 px-6 border-b flex flex-row items-center justify-between space-y-0">
-            <div className="flex items-center gap-3">
-               <div className="h-8 w-8 bg-emerald-600 rounded-lg flex items-center justify-center text-white shadow-sm">
-                  <Layers className="h-4 w-4" />
-               </div>
-               <CardTitle className="text-lg font-bold">2. Data Architecture</CardTitle>
-            </div>
-            <Button variant="outline" size="sm" onClick={addField} type="button" className="rounded-lg h-9 px-4 gap-2 border text-emerald-700 hover:bg-emerald-50 transition-all font-bold text-xs">
-                <Plus className="h-3.5 w-3.5" />
-                Add Field
-             </Button>
-          </CardHeader>
-
-          <CardContent className="p-0">
-             {/* Fields List */}
-             <div className="divide-y divide-muted">
-               {fields.map((field, index) => (
-                 <div key={index} className="group relative p-6 hover:bg-muted/5 transition-colors">
-                   <div className="flex flex-col lg:flex-row items-start lg:items-end gap-4">
-                     <div className="grid gap-2 flex-1 w-full">
-                       <Label className="font-bold text-[10px] uppercase tracking-widest text-muted-foreground flex items-center gap-1.5">
-                          <Database className="h-3 w-3" />
-                          JSON Key Name
-                       </Label>
-                       <Input
-                         placeholder="e.g. user_email"
-                         value={field.name}
-                         onChange={(e) => updateField(index, { name: e.target.value })}
-                         className="rounded-lg h-11 bg-background border font-mono text-sm focus:ring-primary/20 transition-all"
-                       />
-                     </div>
-
-                     <div className="grid gap-2 w-full lg:w-48">
-                       <Label className="font-bold text-[10px] uppercase tracking-widest text-muted-foreground">Type</Label>
-                       <Select
-                         value={field.type}
-                         onValueChange={(val: any) => updateField(index, { type: val })}
-                       >
-                         <SelectTrigger className="rounded-lg h-11 bg-background border text-sm">
-                           <SelectValue />
-                         </SelectTrigger>
-                         <SelectContent className="rounded-lg border">
-                           <SelectItem value="string" className="rounded-md">Text</SelectItem>
-                           <SelectItem value="number" className="rounded-md">Number</SelectItem>
-                           <SelectItem value="boolean" className="rounded-md">Boolean</SelectItem>
-                         </SelectContent>
-                       </Select>
-                     </div>
-
-                     <div className="flex items-center justify-between lg:flex-col lg:items-center gap-2 bg-muted/20 px-4 py-2 rounded-lg border w-full lg:w-auto min-h-[44px]">
-                       <Label className="text-[9px] font-black uppercase tracking-widest text-muted-foreground">Req?</Label>
-                       <Switch
-                         checked={field.required}
-                         onCheckedChange={(val) => updateField(index, { required: val })}
-                         className="scale-90 data-[state=checked]:bg-emerald-600"
-                       />
-                     </div>
-
-                     <Button
-                       variant="ghost"
-                       size="icon"
-                       className="rounded-lg h-11 w-11 text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-all"
-                       onClick={() => removeField(index)}
-                       type="button"
-                     >
-                       <Trash2 className="h-4 w-4" />
-                     </Button>
-                   </div>
-                 </div>
-               ))}
-             </div>
-
-             {/* Footer Action */}
-             <div className="p-6 bg-muted/10 flex justify-center border-t">
-                <Button variant="ghost" size="sm" onClick={addField} type="button" className="rounded-lg h-10 px-6 gap-2 font-bold hover:bg-background transition-all group border border-transparent hover:border-border">
-                  <Plus className="h-4 w-4 text-emerald-600" />
-                  Insert Another Field
+    <div className="bg-[#f6f6f7] min-h-[calc(100vh-64px)] pb-32">
+      <form onSubmit={handleSubmit} className="max-w-5xl mx-auto px-4 md:px-8 py-10 space-y-10">
+        
+        {/* Page Header */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-[#e1e3e5] pb-8">
+          <div className="flex items-center gap-5">
+             <Link href="/dashboard">
+                <Button variant="outline" size="icon" type="button" className="rounded-lg h-10 w-10 border-[#e1e3e5] bg-white hover:bg-[#f6f6f7] transition-all shadow-xs">
+                  <ArrowLeft className="h-4 w-4" />
                 </Button>
+             </Link>
+             <div className="space-y-1">
+                <h1 className="text-3xl font-black tracking-tighter text-[#202223] uppercase italic">Create Flow</h1>
+                <p className="text-[#6d7175] text-sm font-medium">
+                  Define your data structure and automation pipeline.
+                </p>
              </div>
-          </CardContent>
-        </Card>
-      </div>
+          </div>
+        </div>
 
-      {/* Submission Actions */}
-      <div className="flex flex-col-reverse sm:flex-row justify-end gap-4 items-center pt-6 border-t">
-        <Link href="/dashboard" className="w-full sm:w-auto">
-          <Button variant="ghost" className="rounded-lg h-12 px-8 text-sm font-bold w-full" type="button">Discard</Button>
-        </Link>
-        <Button size="lg" className="rounded-lg h-12 px-12 text-base gap-3 shadow-lg hover:shadow-primary/20 transition-all font-black w-full sm:w-auto group overflow-hidden relative" type="submit" disabled={isPending}>
-          <div className="absolute inset-0 bg-linear-to-r from-primary to-emerald-600 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 -z-10"></div>
-          {isPending ? <Sparkles className="h-5 w-5 animate-spin" /> : <Save className="h-5 w-5 group-hover:scale-110 transition-transform" />}
-          {isPending ? "Building..." : "Create Flow"}
-        </Button>
-      </div>
-    </form>
+        <div className="grid gap-10">
+          {/* Section 1: Identity */}
+          <section className="space-y-5">
+             <div className="flex items-center gap-3">
+                <div className="h-6 w-6 rounded bg-[#202223] text-white flex items-center justify-center text-[10px] font-black shadow-sm">1</div>
+                <h3 className="text-xs font-black uppercase tracking-[0.15em] text-[#6d7175]">Flow Identity</h3>
+             </div>
+             <Card className="rounded-lg border-[#e1e3e5] shadow-xs overflow-hidden bg-white">
+                <CardContent className="p-8">
+                   <div className="space-y-4">
+                      <Label htmlFor="name" className="text-[10px] font-black uppercase tracking-widest text-[#6d7175] flex items-center gap-2">
+                         <Layout className="h-4 w-4 text-[#008060]" />
+                         Administrative Name
+                      </Label>
+                      <Input
+                        id="name"
+                        placeholder="e.g. Shopify Orders to Google Sheets"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                        className="h-12 rounded-lg text-sm border-[#e1e3e5] focus:border-[#008060] transition-all bg-[#f9fafb] shadow-inner"
+                      />
+                      <p className="text-[11px] text-[#6d7175] font-medium opacity-60">
+                         This name is only used for internal tracking in your dashboard.
+                      </p>
+                   </div>
+                </CardContent>
+             </Card>
+          </section>
+
+          {/* Section 2: Data Schema */}
+          <section className="space-y-5">
+             <div className="flex items-center gap-3">
+                <div className="h-6 w-6 rounded bg-[#202223] text-white flex items-center justify-center text-[10px] font-black shadow-sm">2</div>
+                <h3 className="text-xs font-black uppercase tracking-[0.15em] text-[#6d7175]">Data Architecture</h3>
+             </div>
+             <Card className="rounded-lg border-[#e1e3e5] shadow-xs overflow-hidden bg-white">
+                <CardHeader className="bg-[#fafafa] pb-4 pt-4 border-b border-[#e1e3e5] px-8 flex flex-row items-center justify-between space-y-0">
+                  <div className="flex items-center gap-3">
+                     <Layers className="h-4 w-4 text-[#008060]" />
+                     <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#6d7175]">Field Definitions</span>
+                  </div>
+                  <Button variant="outline" size="sm" onClick={addField} type="button" className="rounded-lg h-8 px-4 gap-2 border-[#e1e3e5] bg-white text-[#008060] hover:bg-[#e3f1df] hover:border-[#bbe5b3] transition-all font-black text-[9px] uppercase tracking-widest">
+                      <Plus className="h-3.5 w-3.5" />
+                      Add Property
+                   </Button>
+                </CardHeader>
+
+                <CardContent className="p-0">
+                   <div className="divide-y divide-[#f1f2f3]">
+                     {fields.map((field, index) => (
+                       <div key={index} className="p-8 hover:bg-[#f9fafb] transition-colors group">
+                         <div className="flex flex-col lg:flex-row items-start lg:items-end gap-6">
+                           <div className="grid gap-3 flex-1 w-full">
+                             <Label className="font-black text-[9px] uppercase tracking-widest text-[#6d7175] flex items-center gap-1.5">
+                                <Database className="h-3 w-3 opacity-60" />
+                                Key Identifier
+                             </Label>
+                             <Input
+                               placeholder="e.g. customer_id"
+                               value={field.name}
+                               onChange={(e) => updateField(index, { name: e.target.value })}
+                               className="rounded-lg h-11 bg-white border-[#e1e3e5] font-mono text-xs focus:ring-[#008060]/20 transition-all shadow-xs"
+                             />
+                           </div>
+
+                           <div className="grid gap-3 w-full lg:w-48">
+                             <Label className="font-black text-[9px] uppercase tracking-widest text-[#6d7175]">Data Type</Label>
+                             <Select
+                               value={field.type}
+                               onValueChange={(val: any) => updateField(index, { type: val })}
+                             >
+                               <SelectTrigger className="rounded-lg h-11 bg-white border-[#e1e3e5] text-xs font-bold text-[#202223] shadow-xs">
+                                 <SelectValue />
+                               </SelectTrigger>
+                               <SelectContent className="rounded-lg border-[#e1e3e5] shadow-lg">
+                                 <SelectItem value="string" className="text-xs font-bold">Text (String)</SelectItem>
+                                 <SelectItem value="number" className="text-xs font-bold">Decimal (Number)</SelectItem>
+                                 <SelectItem value="boolean" className="text-xs font-bold">Toggle (Boolean)</SelectItem>
+                               </SelectContent>
+                             </Select>
+                           </div>
+
+                           <div className="flex items-center justify-between lg:flex-col lg:items-center gap-2 bg-[#f1f2f3] px-5 py-2.5 rounded-lg border border-[#e1e3e5] w-full lg:w-auto min-h-[48px] shadow-inner">
+                             <Label className="text-[9px] font-black uppercase tracking-widest text-[#6d7175]">Req?</Label>
+                             <Switch
+                               checked={field.required}
+                               onCheckedChange={(val) => updateField(index, { required: val })}
+                               className="scale-90 data-[state=checked]:bg-[#008060]"
+                             />
+                           </div>
+
+                           <Button
+                             variant="outline"
+                             size="icon"
+                             className="rounded-lg h-11 w-11 text-[#6d7175] border-[#e1e3e5] hover:text-[#d72c0d] hover:bg-[#fff4f2] hover:border-[#f8d7da] transition-all shadow-xs"
+                             onClick={() => removeField(index)}
+                             type="button"
+                           >
+                             <Trash2 className="h-4 w-4" />
+                           </Button>
+                         </div>
+                       </div>
+                     ))}
+                   </div>
+
+                   <div className="p-8 bg-[#fafafa] flex justify-center border-t border-[#e1e3e5]">
+                      <Button variant="ghost" size="sm" onClick={addField} type="button" className="rounded-lg h-11 px-8 gap-3 font-black text-[10px] uppercase tracking-widest hover:bg-white hover:border-[#e1e3e5] transition-all border border-transparent">
+                        <Plus className="h-4 w-4 text-[#008060]" />
+                        Insert Another Property
+                      </Button>
+                   </div>
+                </CardContent>
+             </Card>
+          </section>
+        </div>
+
+        {/* Footer Actions */}
+        <div className="flex flex-col-reverse sm:flex-row justify-end gap-5 items-center pt-10 border-t border-[#e1e3e5]">
+          <Link href="/dashboard" className="w-full sm:w-auto">
+            <Button variant="ghost" className="rounded-lg h-12 px-8 text-xs font-black uppercase tracking-widest text-[#6d7175] hover:text-[#202223] w-full" type="button">Discard</Button>
+          </Link>
+          <Button size="lg" className="bg-[#008060] hover:bg-[#006e52] text-white rounded-lg h-12 px-12 text-xs font-black uppercase tracking-widest gap-3 shadow-sm transition-all w-full sm:w-auto" type="submit" disabled={isPending}>
+            {isPending ? <Sparkles className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
+            {isPending ? "Configuring..." : "Establish Pipeline"}
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 }
 

@@ -119,195 +119,194 @@ console.log(result);`
   };
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto pb-32 px-4">
-      {/* Compact Header */}
-      <div className="relative group mt-6">
-        <div className="relative bg-background p-6 rounded-lg border shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-          <div className="flex items-center gap-4">
+    <div className="bg-[#f6f6f7] min-h-[calc(100vh-64px)] pb-32">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 space-y-10">
+        
+        {/* Page Header */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-[#e1e3e5] pb-8">
+          <div className="flex items-center gap-5">
              <Link href="/dashboard">
-                <Button variant="outline" size="icon" className="rounded-lg h-10 w-10 border hover:bg-muted/50 transition-all">
+                <Button variant="outline" size="icon" className="rounded-lg h-10 w-10 border-[#e1e3e5] bg-white hover:bg-[#f6f6f7] transition-all shadow-xs">
                   <ArrowLeft className="h-4 w-4" />
                 </Button>
              </Link>
-             <div className="flex items-center gap-3">
-                <div className="h-12 w-12 bg-primary rounded-lg flex items-center justify-center text-white shadow-md">
-                   <Sparkles className="h-6 w-6" />
-                </div>
-                <div>
-                   <h1 className="text-2xl font-black tracking-tight uppercase italic">{endpoint.name}</h1>
-                   <div className="flex items-center gap-2 mt-0.5">
-                      <Badge variant={isActive ? "success" : "secondary"}>
-                         {isActive ? "Active" : "Paused"}
-                      </Badge>
-                      <span className="text-[10px] text-muted-foreground font-mono opacity-60">ID: {endpoint.id}</span>
+             <div className="space-y-1">
+                <h1 className="text-3xl font-black tracking-tighter text-[#202223] uppercase italic">{endpoint.name}</h1>
+                <div className="flex items-center gap-3">
+                   <div className={cn(
+                      "inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-tight border",
+                      isActive ? "bg-[#e3f1df] border-[#bbe5b3] text-[#008060]" : "bg-[#f1f2f3] border-[#e1e3e5] text-[#6d7175]"
+                   )}>
+                      <span className={cn("h-1.5 w-1.5 rounded-full", isActive ? "bg-[#008060] animate-pulse" : "bg-[#6d7175]")}></span>
+                      {isActive ? "Running" : "Paused"}
                    </div>
+                   <span className="text-[10px] font-mono text-[#6d7175] opacity-50">ID: {endpoint.id}</span>
                 </div>
              </div>
           </div>
-          <Button variant="outline" size="sm" className="rounded-lg h-10 px-4 gap-2 border text-destructive border-destructive/10 hover:bg-destructive/5 transition-all w-full md:w-auto font-black text-[10px] uppercase tracking-widest" onClick={handleDelete} disabled={isPending}>
+          <Button variant="outline" size="sm" className="rounded-lg h-10 px-5 gap-2 border-[#e1e3e5] bg-white text-[#d72c0d] hover:bg-[#fff4f2] hover:border-[#f8d7da] transition-all font-black text-[10px] uppercase tracking-widest shadow-xs" onClick={handleDelete} disabled={isPending}>
              <Trash2 className="h-4 w-4" />
-             Delete Flow
+             Archive Pipeline
           </Button>
         </div>
-      </div>
 
-      <div className="grid lg:grid-cols-12 gap-8">
-        <div className="lg:col-span-7 space-y-8">
-          
-          {/* Step 1: Webhook Link - Compact */}
-          <section className="space-y-4">
-             <div className="flex items-center gap-2 px-1">
-                <div className="h-6 w-6 rounded-md bg-foreground text-background flex items-center justify-center text-[10px] font-black shadow-sm">1</div>
-                <h3 className="text-xs font-black uppercase tracking-widest text-muted-foreground">Secret Webhook Link</h3>
-             </div>
-             <Card className="rounded-lg border shadow-sm overflow-hidden bg-background">
-                <CardContent className="p-6 space-y-6">
-                   <div className="space-y-3">
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                         Send POST requests to this URL to push data to your Google Sheet.
-                      </p>
-                      <div className="flex gap-2 bg-muted/20 p-2 rounded-lg border border-dashed focus-within:border-primary/50 transition-all">
-                         <Input value={captureUrl} readOnly className="border-none bg-transparent font-mono text-xs focus-visible:ring-0 shadow-none h-9" />
-                         <Button size="sm" className="rounded-lg h-9 px-4 gap-2 font-black text-[10px] uppercase tracking-widest shadow-sm" onClick={() => copyToClipboard(captureUrl, setCopiedUrl)}>
-                           {copiedUrl ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
-                           {copiedUrl ? "Copied" : "Copy"}
-                         </Button>
-                      </div>
-                   </div>
-
-                   {/* Usage Examples Tabs */}
-                   <div className="space-y-3 pt-4 border-t">
-                      <div className="flex items-center justify-between">
-                         <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground flex items-center gap-2">
-                            <Code className="h-3.5 w-3.5" />
-                            Implementation Examples
-                         </Label>
-                         <div className="flex bg-muted/50 p-1 rounded-md border">
-                            {(["curl", "python", "nextjs"] as const).map((tab) => (
-                               <button
-                                 key={tab}
-                                 onClick={() => setActiveTab(tab)}
-                                 className={cn(
-                                   "px-3 py-1 text-[9px] font-black uppercase tracking-widest rounded-sm transition-all",
-                                   activeTab === tab ? "bg-background shadow-sm text-primary" : "text-muted-foreground hover:text-foreground"
-                                 )}
-                               >
-                                 {tab === "nextjs" ? "Next.js" : tab}
-                               </button>
-                            ))}
-                         </div>
-                      </div>
-                      <div className="rounded-lg bg-zinc-950 p-4 font-mono text-[11px] leading-relaxed text-zinc-300 overflow-hidden relative border border-zinc-800 shadow-inner group">
-                         <pre className="max-h-[250px] overflow-auto custom-scrollbar pt-2"><code>{usageExamples[activeTab]}</code></pre>
-                         <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <Button size="icon" variant="secondary" className="rounded-md h-8 w-8 shadow-md border-zinc-700 bg-zinc-900 hover:bg-zinc-800 text-zinc-300" onClick={() => copyToClipboard(usageExamples[activeTab], setCopiedExample)}>
-                               {copiedExample ? <Check className="h-3.5 w-3.5 text-emerald-500" /> : <Copy className="h-3.5 w-3.5" />}
-                            </Button>
-                         </div>
-                      </div>
-                   </div>
-                </CardContent>
-             </Card>
-          </section>
-
-          {/* Step 2: Destination - Compact */}
-          <section className="space-y-4">
-             <div className="flex items-center gap-2 px-1">
-                <div className="h-6 w-6 rounded-md bg-foreground text-background flex items-center justify-center text-[10px] font-black shadow-sm">2</div>
-                <h3 className="text-xs font-black uppercase tracking-widest text-muted-foreground">Destination Settings</h3>
-             </div>
-             <form onSubmit={handleUpdate}>
-                <Card className="rounded-lg border shadow-sm overflow-hidden bg-background">
-                  <CardContent className="p-6 space-y-8">
-                    <div className="space-y-3">
-                      <Label htmlFor="googleUrl" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground flex items-center gap-2">
-                         <FileCode className="h-3.5 w-3.5 text-emerald-600" />
-                         Google Script URL
-                      </Label>
-                      <Input
-                        id="googleUrl"
-                        placeholder="https://script.google.com/macros/s/.../exec"
-                        value={googleScriptUrl}
-                        onChange={(e) => setGoogleScriptUrl(e.target.value)}
-                        className="h-11 rounded-lg text-sm border focus:border-primary transition-all bg-muted/5 font-mono"
-                      />
-                    </div>
-                    
-                    <div className="flex items-center justify-between p-5 rounded-lg bg-muted/10 border border-dashed">
-                      <div className="space-y-0.5">
-                        <Label className="text-xs font-black uppercase tracking-widest">Flow Status</Label>
-                        <p className="text-[10px] text-muted-foreground opacity-60">
-                          Instantly pause or resume the data stream.
+        <div className="grid lg:grid-cols-12 gap-10">
+          <div className="lg:col-span-7 space-y-10">
+            
+            {/* Section 1: Inbound Webhook */}
+            <section className="space-y-5">
+               <div className="flex items-center gap-3">
+                  <div className="h-6 w-6 rounded bg-[#202223] text-white flex items-center justify-center text-[10px] font-black shadow-sm">1</div>
+                  <h3 className="text-xs font-black uppercase tracking-[0.15em] text-[#6d7175]">Connection Endpoint</h3>
+               </div>
+               <Card className="rounded-lg border-[#e1e3e5] shadow-xs overflow-hidden bg-white">
+                  <CardContent className="p-8 space-y-8">
+                     <div className="space-y-4">
+                        <p className="text-sm text-[#6d7175] font-medium leading-relaxed">
+                           Use this unique URL to send data from your applications. Only payloads matching your schema will be accepted.
                         </p>
-                      </div>
-                      <Switch
-                        checked={isActive}
-                        onCheckedChange={setIsActive}
-                        className="scale-90 data-[state=checked]:bg-emerald-500"
-                      />
-                    </div>
+                        <div className="flex gap-2 bg-[#f9fafb] p-2.5 rounded-lg border border-[#e1e3e5] border-dashed focus-within:border-[#008060] transition-all">
+                           <Input value={captureUrl} readOnly className="border-none bg-transparent font-mono text-[11px] focus-visible:ring-0 shadow-none h-9 text-[#202223]" />
+                           <Button size="sm" className="bg-[#202223] hover:bg-black text-white rounded-lg h-9 px-5 gap-2 font-black text-[10px] uppercase tracking-widest shadow-sm transition-all" onClick={() => copyToClipboard(captureUrl, setCopiedUrl)}>
+                             {copiedUrl ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+                             {copiedUrl ? "Copied" : "Copy URL"}
+                           </Button>
+                        </div>
+                     </div>
 
-                    <Button type="submit" disabled={isPending} size="lg" className="w-full rounded-lg h-12 px-10 gap-2 shadow-md hover:shadow-primary/20 transition-all font-black text-xs uppercase tracking-widest group overflow-hidden relative">
-                       <div className="absolute inset-0 bg-linear-to-r from-primary to-emerald-600 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 -z-10"></div>
-                       <Save className="h-4 w-4 group-hover:scale-110 transition-transform" />
-                       {isPending ? "Saving..." : "Save Connection Settings"}
-                    </Button>
+                     {/* Implementation Tabs */}
+                     <div className="space-y-4 pt-8 border-t border-[#f1f2f3]">
+                        <div className="flex items-center justify-between">
+                           <Label className="text-[10px] font-black uppercase tracking-widest text-[#6d7175] flex items-center gap-2">
+                              <Code className="h-3.5 w-3.5" />
+                              SDK Implementation
+                           </Label>
+                           <div className="flex bg-[#f1f2f3] p-1 rounded-lg border border-[#e1e3e5]">
+                              {(["curl", "python", "nextjs"] as const).map((tab) => (
+                                 <button
+                                   key={tab}
+                                   onClick={() => setActiveTab(tab)}
+                                   className={cn(
+                                     "px-3 py-1.5 text-[9px] font-black uppercase tracking-widest rounded-md transition-all",
+                                     activeTab === tab ? "bg-white shadow-xs text-[#008060]" : "text-[#6d7175] hover:text-[#202223]"
+                                   )}
+                                 >
+                                   {tab === "nextjs" ? "Next.js" : tab}
+                                 </button>
+                              ))}
+                           </div>
+                        </div>
+                        <div className="rounded-lg bg-[#0b0c0d] p-5 font-mono text-[11px] leading-relaxed text-[#aeb4b9] overflow-hidden relative border border-[#1a1c1d] shadow-inner group">
+                           <pre className="max-h-[250px] overflow-auto custom-scrollbar pt-2"><code>{usageExamples[activeTab]}</code></pre>
+                           <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                              <Button size="icon" variant="secondary" className="rounded-md h-8 w-8 shadow-md border-[#333] bg-[#1a1c1d] hover:bg-[#2a2c2d] text-white" onClick={() => copyToClipboard(usageExamples[activeTab], setCopiedExample)}>
+                                 {copiedExample ? <Check className="h-3.5 w-3.5 text-[#008060]" /> : <Copy className="h-3.5 w-3.5" />}
+                              </Button>
+                           </div>
+                        </div>
+                     </div>
                   </CardContent>
-                </Card>
-             </form>
-          </section>
-        </div>
+               </Card>
+            </section>
 
-        {/* Sidebar: Instructions - Compact */}
-        <div className="lg:col-span-5 space-y-6">
-          <div className="sticky top-28 space-y-6">
-             <Card className="rounded-lg border shadow-sm overflow-hidden bg-background">
-                <CardHeader className="bg-muted/30 pb-4 pt-4 border-b">
-                   <CardTitle className="text-[10px] font-black flex items-center gap-2 uppercase tracking-widest text-muted-foreground">
-                      <LinkIcon className="h-4 w-4" />
-                      Sheet Setup Guide
-                   </CardTitle>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <div className="p-6 space-y-6">
-                    <ol className="space-y-4">
-                       {[
-                         { step: "Spreadsheet", desc: "Open your target Google Sheet." },
-                         { step: "Apps Script", desc: 'Go to <span className="font-bold">Extensions > Apps Script</span>.' },
-                         { step: "Deployment", desc: 'Delete all code and paste the block below.' },
-                         { step: "Authorization", desc: 'Click <span className="font-bold">Deploy > New Deployment</span>.' },
-                         { step: "Access", desc: 'Select <span className="font-bold text-blue-600">Web App</span> and set access to <span className="font-bold text-blue-600">Anyone</span>.' },
-                         { step: "Finalize", desc: 'Copy the URL into <span className="font-bold">Step 2</span>.' }
-                       ].map((item, i) => (
-                         <li key={i} className="flex gap-4">
-                            <span className="flex-none h-6 w-6 rounded-md bg-muted text-muted-foreground text-[10px] font-black flex items-center justify-center border">
-                               {i+1}
-                            </span>
-                            <div className="space-y-0.5">
-                               <p className="font-black text-[10px] uppercase tracking-widest">{item.step}</p>
-                               <p className="text-[11px] text-muted-foreground leading-relaxed" dangerouslySetInnerHTML={{ __html: item.desc }} />
+            {/* Section 2: Destination */}
+            <section className="space-y-5">
+               <div className="flex items-center gap-3">
+                  <div className="h-6 w-6 rounded bg-[#202223] text-white flex items-center justify-center text-[10px] font-black shadow-sm">2</div>
+                  <h3 className="text-xs font-black uppercase tracking-[0.15em] text-[#6d7175]">Relay Configuration</h3>
+               </div>
+               <form onSubmit={handleUpdate}>
+                  <Card className="rounded-lg border-[#e1e3e5] shadow-xs overflow-hidden bg-white">
+                    <CardContent className="p-8 space-y-10">
+                      <div className="space-y-4">
+                        <Label htmlFor="googleUrl" className="text-[10px] font-black uppercase tracking-widest text-[#6d7175] flex items-center gap-2">
+                           <FileCode className="h-4 w-4 text-[#008060]" />
+                           Google Deployment URL
+                        </Label>
+                        <Input
+                          id="googleUrl"
+                          placeholder="https://script.google.com/macros/s/.../exec"
+                          value={googleScriptUrl}
+                          onChange={(e) => setGoogleScriptUrl(e.target.value)}
+                          className="h-12 rounded-lg text-sm border-[#e1e3e5] focus:border-[#008060] transition-all bg-[#f9fafb] font-mono shadow-inner"
+                        />
+                      </div>
+                      
+                      <div className="flex items-center justify-between p-6 rounded-lg bg-[#f9fafb] border border-[#e1e3e5] border-dashed">
+                        <div className="space-y-1">
+                          <Label className="text-xs font-black uppercase tracking-widest text-[#202223]">Maintenance Mode</Label>
+                          <p className="text-[11px] text-[#6d7175] font-medium">
+                            Stop receiving data without deleting the flow.
+                          </p>
+                        </div>
+                        <Switch
+                          checked={isActive}
+                          onCheckedChange={setIsActive}
+                          className="scale-95 data-[state=checked]:bg-[#008060]"
+                        />
+                      </div>
+
+                      <Button type="submit" disabled={isPending} size="lg" className="w-full bg-[#008060] hover:bg-[#006e52] text-white rounded-lg h-12 px-10 gap-2 shadow-sm font-black text-xs uppercase tracking-widest transition-all">
+                         <Save className="h-4 w-4" />
+                         {isPending ? "Syncing..." : "Apply Connection Settings"}
+                      </Button>
+                    </CardContent>
+                  </Card>
+               </form>
+            </section>
+          </div>
+
+          {/* Sidebar: Documentation */}
+          <div className="lg:col-span-5 space-y-8">
+            <div className="sticky top-28 space-y-8">
+               <Card className="rounded-lg border-[#e1e3e5] shadow-xs overflow-hidden bg-white">
+                  <CardHeader className="bg-[#fafafa] pb-4 pt-5 border-b border-[#e1e3e5] px-8">
+                     <CardTitle className="text-[10px] font-black flex items-center gap-3 uppercase tracking-[0.2em] text-[#6d7175]">
+                        <LinkIcon className="h-4 w-4" />
+                        Infrastructure Setup
+                     </CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-0">
+                    <div className="p-8 space-y-8">
+                      <ol className="space-y-5">
+                         {[
+                           { step: "Spreadsheet", desc: "Initialize your target Google Sheet." },
+                           { step: "Apps Script", desc: 'Navigate to <span className="text-[#008060] font-bold">Extensions > Apps Script</span>.' },
+                           { step: "Deployment", desc: 'Replace existing logic with the template below.' },
+                           { step: "Authorization", desc: 'Execute <span className="text-[#008060] font-bold">Deploy > New Deployment</span>.' },
+                           { step: "Access Control", desc: 'Select <span className="text-[#008060] font-bold">Web App</span> and set access to <span className="text-[#d72c0d] font-black uppercase tracking-tighter">Anyone</span>.' },
+                           { step: "Finalize", desc: 'Inject the resulting URL into <span className="font-bold text-[#202223]">Section 2</span>.' }
+                         ].map((item, i) => (
+                           <li key={i} className="flex gap-5">
+                              <span className="flex-none h-6 w-6 rounded bg-[#f1f2f3] border border-[#e1e3e5] text-[#6d7175] text-[10px] font-black flex items-center justify-center">
+                                 {i+1}
+                              </span>
+                              <div className="space-y-1">
+                                 <p className="font-black text-[10px] uppercase tracking-widest text-[#202223]">{item.step}</p>
+                                 <p className="text-[11px] text-[#6d7175] font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: item.desc }} />
+                              </div>
+                           </li>
+                         ))}
+                      </ol>
+
+                      <div className="pt-6 space-y-4">
+                         <Label className="text-[10px] font-black uppercase tracking-widest text-[#6d7175] flex items-center gap-2">
+                            <Database className="h-4 w-4" />
+                            Backend Engine Template
+                         </Label>
+                         <div className="rounded-lg bg-[#0b0c0d] p-5 font-mono text-[11px] leading-relaxed text-[#aeb4b9] overflow-hidden relative border border-[#1a1c1d] shadow-inner group">
+                            <pre className="max-h-[300px] overflow-auto custom-scrollbar pt-2"><code>{GOOGLE_SCRIPT_TEMPLATE}</code></pre>
+                            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                               <Button size="icon" variant="secondary" className="rounded-md h-8 w-8 shadow-md border-[#333] bg-[#1a1c1d] hover:bg-[#2a2c2d] text-white" onClick={() => copyToClipboard(GOOGLE_SCRIPT_TEMPLATE, setCopiedScript)}>
+                                  {copiedScript ? <Check className="h-3.5 w-3.5 text-[#008060]" /> : <Copy className="h-3.5 w-3.5" />}
+                               </Button>
                             </div>
-                         </li>
-                       ))}
-                    </ol>
-
-                    <div className="pt-4 space-y-3">
-                       <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground flex items-center gap-2">
-                          <Database className="h-3.5 w-3.5" />
-                          App Script Template
-                       </Label>
-                       <div className="rounded-lg bg-zinc-950 p-4 font-mono text-[11px] leading-relaxed text-zinc-300 overflow-hidden relative border border-zinc-800 shadow-inner group">
-                          <pre className="max-h-[300px] overflow-auto custom-scrollbar pt-2"><code>{GOOGLE_SCRIPT_TEMPLATE}</code></pre>
-                          <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                             <Button size="icon" variant="secondary" className="rounded-md h-8 w-8 shadow-md border-zinc-700 bg-zinc-900 hover:bg-zinc-800 text-zinc-300" onClick={() => copyToClipboard(GOOGLE_SCRIPT_TEMPLATE, setCopiedScript)}>
-                                {copiedScript ? <Check className="h-3.5 w-3.5 text-emerald-500" /> : <Copy className="h-3.5 w-3.5" />}
-                             </Button>
-                          </div>
-                       </div>
+                         </div>
+                      </div>
                     </div>
-                  </div>
-                </CardContent>
-             </Card>
+                  </CardContent>
+               </Card>
+            </div>
           </div>
         </div>
       </div>

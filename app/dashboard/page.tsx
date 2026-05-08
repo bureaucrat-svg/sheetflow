@@ -1,7 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma";
 import { Button } from "@/components/ui/button";
-import { Plus, Settings2, CheckCircle2, XCircle, MoreVertical, LayoutGrid, Zap, ArrowRight, Activity } from "lucide-react";
+import { Plus, Settings2, CheckCircle2, XCircle, MoreVertical, LayoutGrid, Zap, ArrowRight, Activity, Globe, Database, Clock } from "lucide-react";
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -9,7 +9,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { redirect } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-// Derived type from Prisma to avoid import issues
 type Endpoint = Awaited<ReturnType<typeof prisma.endpoint.findMany>>[number];
 
 export default async function DashboardPage() {
@@ -26,118 +25,118 @@ export default async function DashboardPage() {
   });
 
   return (
-    <div className="bg-muted/30 min-h-[calc(100vh-64px)] pb-24">
-      <div className="container mx-auto px-4 md:px-6 py-8 space-y-8">
+    <div className="bg-[#f6f6f7] min-h-[calc(100vh-64px)] pb-24">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 space-y-10">
         
-        {/* Compact Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-background p-6 rounded-lg border shadow-sm">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2 text-primary font-bold tracking-widest text-[10px] uppercase">
-               <Activity className="h-3 w-3" />
-               <span>Control Center</span>
-            </div>
-            <h1 className="text-2xl font-black tracking-tight text-foreground uppercase italic">Your Flows</h1>
-            <p className="text-muted-foreground text-sm max-w-xl">
-              Monitor pipelines and manage sheet connections.
+        {/* Polaris Style Page Header */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-zinc-200 pb-8">
+          <div className="space-y-1.5">
+            <h1 className="text-3xl font-black tracking-tighter text-[#202223] uppercase italic">Dashboard</h1>
+            <p className="text-[#6d7175] text-sm font-medium">
+              Manage your validated Google Sheet pipelines.
             </p>
           </div>
-          <Link href="/dashboard/new">
-            <Button className="rounded-lg h-11 px-6 gap-2 shadow-md hover:shadow-primary/20 transition-all font-black text-sm group overflow-hidden relative">
-              <div className="absolute inset-0 bg-linear-to-r from-primary to-emerald-600 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 -z-10"></div>
-              <Plus className="h-4 w-4 group-hover:rotate-90 transition-transform" />
-              Create Flow
-            </Button>
-          </Link>
+          <div className="flex items-center gap-3">
+             <Link href="/dashboard/new">
+                <Button className="bg-[#008060] hover:bg-[#006e52] text-white rounded-lg h-10 px-5 gap-2 shadow-sm font-black text-xs uppercase tracking-widest transition-all">
+                  <Plus className="h-4 w-4" />
+                  Create New Flow
+                </Button>
+             </Link>
+          </div>
         </div>
 
         {endpoints.length === 0 ? (
-          <Card className="flex flex-col items-center justify-center py-20 text-center border rounded-lg bg-background shadow-sm group">
-            <div className="relative mb-6">
-               <div className="relative rounded-lg bg-muted/50 p-6 shadow-inner">
-                  <LayoutGrid className="h-12 w-12 text-muted-foreground" />
-               </div>
+          <Card className="flex flex-col items-center justify-center py-24 text-center border-[#e1e3e5] rounded-lg bg-white shadow-xs">
+            <div className="h-16 w-16 bg-[#f1f2f3] rounded-2xl flex items-center justify-center mb-6">
+               <Database className="h-8 w-8 text-[#6d7175]" />
             </div>
-            <CardTitle className="text-xl font-black tracking-tight uppercase italic">No active flows</CardTitle>
-            <CardDescription className="mt-2 text-sm max-w-md px-6 text-muted-foreground">
-              Build your first automated pipeline to start capturing data.
+            <CardTitle className="text-xl font-black text-[#202223] uppercase italic tracking-tight">Ready to start?</CardTitle>
+            <CardDescription className="mt-2 text-sm max-w-sm px-6 text-[#6d7175] font-medium leading-relaxed">
+              Create your first automation to capture JSON data and push it directly into Google Sheets.
             </CardDescription>
-            <Link href="/dashboard/new" className="mt-6">
-              <Button size="sm" className="rounded-lg h-10 px-6 gap-2 font-black shadow-sm">
-                Get Started
-                <ArrowRight className="h-4 w-4" />
+            <Link href="/dashboard/new" className="mt-8">
+              <Button size="lg" className="bg-[#008060] hover:bg-[#006e52] text-white rounded-lg h-11 px-8 gap-2 font-black text-xs uppercase tracking-widest">
+                <Plus className="h-4 w-4" />
+                Build First Flow
               </Button>
             </Link>
           </Card>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-6">
             <div className="flex items-center justify-between px-1">
-               <h2 className="font-black text-sm uppercase tracking-widest flex items-center gap-2 text-muted-foreground">
-                  <Zap className="h-4 w-4 text-yellow-500" />
-                  Live Workflows
+               <h2 className="font-black text-[10px] uppercase tracking-[0.2em] text-[#6d7175] flex items-center gap-2">
+                  <Activity className="h-3.5 w-3.5 text-[#008060]" />
+                  Active Pipelines
                </h2>
-               <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground opacity-60">
-                  {endpoints.length} Active
-               </div>
+               <Badge variant="outline" className="bg-white border-[#e1e3e5] text-[#202223] text-[9px] font-black px-2.5 py-0.5 rounded-full">
+                  {endpoints.length} Total
+               </Badge>
             </div>
             
-            <div className="bg-background rounded-lg border shadow-sm overflow-hidden">
+            <Card className="border-[#e1e3e5] rounded-lg shadow-xs overflow-hidden bg-white">
               <div className="overflow-x-auto">
                 <Table>
-                  <TableHeader className="bg-muted/30 border-b">
-                    <TableRow className="hover:bg-transparent">
-                      <TableHead className="py-4 pl-6 text-[10px] font-black uppercase tracking-widest text-muted-foreground">Flow</TableHead>
-                      <TableHead className="py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">Status</TableHead>
-                      <TableHead className="py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">Schema</TableHead>
-                      <TableHead className="py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">Created</TableHead>
-                      <TableHead className="py-4 text-right pr-6 text-[10px] font-black uppercase tracking-widest text-muted-foreground">Action</TableHead>
+                  <TableHeader className="bg-[#fafafa]">
+                    <TableRow className="hover:bg-transparent border-b border-[#e1e3e5]">
+                      <TableHead className="py-4 pl-6 text-[10px] font-black uppercase tracking-widest text-[#6d7175]">Pipeline Name</TableHead>
+                      <TableHead className="py-4 text-[10px] font-black uppercase tracking-widest text-[#6d7175]">Status</TableHead>
+                      <TableHead className="py-4 text-[10px] font-black uppercase tracking-widest text-[#6d7175]">Field Count</TableHead>
+                      <TableHead className="py-4 text-[10px] font-black uppercase tracking-widest text-[#6d7175]">Created</TableHead>
+                      <TableHead className="py-4 text-right pr-6 text-[10px] font-black uppercase tracking-widest text-[#6d7175]">Action</TableHead>
                     </TableRow>
                   </TableHeader>
-                  <TableBody className="divide-y">
+                  <TableBody>
                     {endpoints.map((endpoint: Endpoint) => (
-                      <TableRow key={endpoint.id} className="group hover:bg-muted/5 transition-colors">
-                        <TableCell className="py-4 pl-6">
-                          <div className="flex items-center gap-3">
-                             <div className="h-9 w-9 rounded-lg bg-primary/5 border flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all shadow-sm">
-                                <Activity className="h-4.5 w-4.5" />
+                      <TableRow key={endpoint.id} className="group hover:bg-[#f9fafb] transition-colors border-b border-[#f1f2f3] last:border-0">
+                        <TableCell className="py-5 pl-6">
+                          <div className="flex items-center gap-4">
+                             <div className="h-10 w-10 rounded-lg bg-[#f1f2f3] border border-[#e1e3e5] flex items-center justify-center text-[#6d7175] group-hover:bg-[#008060] group-hover:text-white group-hover:border-[#008060] transition-all shadow-xs">
+                                <Globe className="h-5 w-5" />
                              </div>
-                             <div className="flex flex-col">
-                               <span className="font-bold text-sm tracking-tight text-foreground">{endpoint.name}</span>
-                               <span className="text-[9px] font-mono text-muted-foreground opacity-60 truncate max-w-[120px]">ID: {endpoint.id}</span>
+                             <div className="flex flex-col gap-0.5">
+                               <span className="font-bold text-sm tracking-tight text-[#202223]">{endpoint.name}</span>
+                               <span className="text-[10px] font-mono text-[#6d7175] opacity-60">ID: {endpoint.id.split('-')[0]}...</span>
                              </div>
                           </div>
                         </TableCell>
-                        <TableCell className="py-4">
+                        <TableCell className="py-5">
                           {endpoint.isActive ? (
-                            <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-100 rounded-md px-2 py-0.5 font-black uppercase tracking-tighter text-[9px] flex items-center gap-1.5 w-fit shadow-xs">
-                              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#e3f1df] border border-[#bbe5b3] text-[#008060] text-[9px] font-black uppercase tracking-tight">
+                              <span className="h-1.5 w-1.5 rounded-full bg-[#008060] animate-pulse"></span>
                               Active
-                            </Badge>
+                            </div>
                           ) : (
-                            <Badge variant="outline" className="bg-zinc-100 text-zinc-500 border-zinc-200 rounded-md px-2 py-0.5 font-black uppercase tracking-tighter text-[9px] flex items-center gap-1.5 w-fit opacity-60">
-                              <span className="h-1.5 w-1.5 rounded-full bg-zinc-400"></span>
+                            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#f1f2f3] border border-[#e1e3e5] text-[#6d7175] text-[9px] font-black uppercase tracking-tight">
+                              <span className="h-1.5 w-1.5 rounded-full bg-[#6d7175]"></span>
                               Paused
-                            </Badge>
+                            </div>
                           )}
                         </TableCell>
-                        <TableCell className="py-4">
-                          <div className="flex items-center gap-2">
-                             <div className="flex -space-x-2">
+                        <TableCell className="py-5">
+                          <div className="flex items-center gap-2.5">
+                             <div className="flex -space-x-1.5">
                                {(endpoint.schema as any[]).slice(0, 3).map((_, i) => (
-                                 <div key={i} className="h-7 w-7 rounded-md border bg-background flex items-center justify-center text-[9px] font-black text-muted-foreground shadow-xs group-hover:-translate-y-0.5 transition-transform" style={{ transitionDelay: `${i * 50}ms` }}>
+                                 <div key={i} className="h-7 w-7 rounded-md border border-[#e1e3e5] bg-white flex items-center justify-center text-[10px] font-black text-[#6d7175] shadow-xs ring-2 ring-white" title={(endpoint.schema as any[])[i].name}>
                                    {(endpoint.schema as any[])[i].name[0].toUpperCase()}
                                  </div>
                                ))}
                              </div>
-                             <span className="text-[10px] font-bold text-muted-foreground/60">{(endpoint.schema as any[]).length} Keys</span>
+                             {(endpoint.schema as any[]).length > 3 && (
+                                <span className="text-[10px] font-bold text-[#6d7175]">+{(endpoint.schema as any[]).length - 3} more</span>
+                             )}
                           </div>
                         </TableCell>
-                        <TableCell className="text-muted-foreground text-[11px] font-medium py-4">
-                          {new Date(endpoint.createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+                        <TableCell className="text-[#6d7175] text-[11px] font-semibold py-5">
+                          <div className="flex items-center gap-2">
+                             <Clock className="h-3.5 w-3.5 opacity-40" />
+                             {new Date(endpoint.createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
+                          </div>
                         </TableCell>
-                        <TableCell className="text-right py-4 pr-6">
+                        <TableCell className="text-right py-5 pr-6">
                           <Link href={`/dashboard/endpoint/${endpoint.id}`}>
-                            <Button variant="outline" size="sm" className="rounded-lg h-9 gap-2 px-4 font-black text-[10px] uppercase tracking-widest border transition-all hover:bg-primary hover:text-white hover:border-primary shadow-xs">
-                              Manage
+                            <Button variant="outline" size="sm" className="bg-white border-[#e1e3e5] text-[#202223] rounded-lg h-9 gap-2 px-5 font-black text-[10px] uppercase tracking-widest transition-all hover:bg-[#f6f6f7] hover:border-[#c9cccf] shadow-xs">
+                              Manage Flow
                             </Button>
                           </Link>
                         </TableCell>
@@ -146,7 +145,7 @@ export default async function DashboardPage() {
                   </TableBody>
                 </Table>
               </div>
-            </div>
+            </Card>
           </div>
         )}
       </div>

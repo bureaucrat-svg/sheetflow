@@ -17,6 +17,12 @@ const robotoMono = Roboto_Mono({
 export const metadata: Metadata = {
   title: "SheetFlow | Validated JSON to Google Sheets",
   description: "SheetFlow is 100% open-source. You can inspect the code, host it yourself, and contribute to making data automation more reliable for everyone.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon.png", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({

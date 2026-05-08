@@ -1,8 +1,14 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
 
-@custom-variant dark (&:is(.dark *));
+/* Dark mode configuration using standard CSS selectors */
+@theme {
+  --color-primary: oklch(0.55 0.15 160);
+  --color-destructive: oklch(0.55 0.18 25);
+  
+  /* The dark variant is built-in to Tailwind v4, 
+     we just need to ensure the class-based toggle works correctly. */
+}
 
 @theme inline {
   --color-background: var(--background);
@@ -49,48 +55,48 @@
 }
 
 :root {
-  /* Google Material 3 inspired light theme */
-  --background: oklch(0.99 0.005 250);
-  --foreground: oklch(0.2 0.02 250);
+  /* Shopify Polaris inspired light theme */
+  --background: oklch(0.97 0.005 250); /* #f6f6f7 */
+  --foreground: oklch(0.2 0.02 250); /* #202223 */
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.2 0.02 250);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.2 0.02 250);
-  --primary: oklch(0.55 0.18 250); /* Google Blue */
+  --primary: oklch(0.55 0.15 160); /* Shopify Green #008060 */
   --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.92 0.02 250);
-  --secondary-foreground: oklch(0.25 0.04 250);
-  --muted: oklch(0.95 0.01 250);
+  --secondary: oklch(0.92 0.01 250);
+  --secondary-foreground: oklch(0.25 0.02 250);
+  --muted: oklch(0.94 0.01 250);
   --muted-foreground: oklch(0.45 0.03 250);
-  --accent: oklch(0.9 0.05 250);
-  --accent-foreground: oklch(0.55 0.18 250);
-  --destructive: oklch(0.6 0.18 25);
-  --border: oklch(0.9 0.02 250);
-  --input: oklch(0.9 0.02 250);
-  --ring: oklch(0.55 0.18 250 / 0.5);
+  --accent: oklch(0.9 0.02 250);
+  --accent-foreground: oklch(0.2 0.02 250);
+  --destructive: oklch(0.55 0.18 25); /* #d72c0d */
+  --border: oklch(0.9 0.01 250);
+  --input: oklch(0.9 0.01 250);
+  --ring: oklch(0.55 0.15 160 / 0.5);
   --radius: 8px;
 }
 
 .dark {
-  /* Google Material 3 inspired dark theme */
+  /* Shopify Polaris inspired dark theme (adapted) */
   --background: oklch(0.12 0.02 250);
   --foreground: oklch(0.95 0.02 250);
   --card: oklch(0.16 0.02 250);
   --card-foreground: oklch(0.95 0.02 250);
   --popover: oklch(0.16 0.02 250);
   --popover-foreground: oklch(0.95 0.02 250);
-  --primary: oklch(0.75 0.12 250);
+  --primary: oklch(0.7 0.12 160);
   --primary-foreground: oklch(0.12 0.02 250);
   --secondary: oklch(0.22 0.03 250);
   --secondary-foreground: oklch(0.95 0.02 250);
   --muted: oklch(0.2 0.03 250);
   --muted-foreground: oklch(0.7 0.03 250);
   --accent: oklch(0.25 0.04 250);
-  --accent-foreground: oklch(0.75 0.12 250);
+  --accent-foreground: oklch(0.7 0.12 160);
   --destructive: oklch(0.5 0.15 25);
   --border: oklch(0.25 0.03 250);
   --input: oklch(0.25 0.03 250);
-  --ring: oklch(0.75 0.12 250 / 0.5);
+  --ring: oklch(0.7 0.12 160 / 0.5);
 }
 
 @layer base {
@@ -98,10 +104,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground relative;
-    background-image: 
-      radial-gradient(circle at 2px 2px, oklch(0.9 0.02 250 / 0.4) 1px, transparent 0);
-    background-size: 24px 24px;
+    @apply bg-background text-foreground relative antialiased;
   }
   
   /* Focus ring refinement */

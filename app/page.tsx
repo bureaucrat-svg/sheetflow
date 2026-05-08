@@ -24,67 +24,59 @@ const GithubIcon = ({ className }: { className?: string }) => (
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center">
-      {/* Hero Section - More Compact & Focused */}
-      <section className="w-full pt-16 pb-24 overflow-hidden relative">
-        <div className="absolute top-0 right-0 -z-10 translate-x-1/4 -translate-y-1/4">
-          <div className="w-[500px] h-[500px] bg-primary/5 rounded-lg blur-3xl" />
-        </div>
-        
-        <div className="container mx-auto px-4 md:px-6 flex flex-col items-center text-center space-y-8">
-          <div className="flex flex-wrap justify-center gap-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-primary/10 text-primary text-[11px] font-black uppercase tracking-widest">
+    <div className="flex flex-col items-center bg-[#f6f6f7] min-h-screen">
+      {/* Hero Section */}
+      <section className="w-full pt-24 pb-32 overflow-hidden relative border-b border-[#e1e3e5] bg-white">
+        <div className="container mx-auto px-4 md:px-8 flex flex-col items-center text-center space-y-10">
+          <div className="flex flex-wrap justify-center gap-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e3f1df] border border-[#bbe5b3] text-[#008060] text-[10px] font-black uppercase tracking-widest">
                <ShieldCheck className="h-3.5 w-3.5" />
-              <span>Validated</span>
+              <span>Production Ready</span>
             </div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-emerald-500/10 text-emerald-600 text-[11px] font-black uppercase tracking-widest">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f1f2f3] border border-[#e1e3e5] text-[#6d7175] text-[10px] font-black uppercase tracking-widest">
                <GithubIcon className="h-3.5 w-3.5" />
-              <span>Open Source</span>
+              <span>Open Infrastructure</span>
             </div>
           </div>
           
-          <h1 className="text-4xl md:text-6xl font-black tracking-tight max-w-4xl leading-[1.1] italic uppercase">
-            The <span className="text-primary">Reliable</span> way to push JSON to Sheets
+          <h1 className="text-5xl md:text-7xl font-black tracking-tighter max-w-5xl leading-none text-[#202223] uppercase italic">
+            The <span className="text-[#008060]">Standard</span> for JSON to Sheets
           </h1>
           
-          <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            Eliminate messy spreadsheets. A **validated, open-source pipeline** to push JSON data via webhooks with automatic schema checks.
+          <p className="text-xl text-[#6d7175] max-w-3xl leading-relaxed font-medium">
+            Deploy a **validated, open-source pipeline** to push JSON data via webhooks with automatic schema checks. Built for reliability, transparency, and speed.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-3 pt-2">
+          <div className="flex flex-col sm:flex-row gap-5 pt-4">
             <Link href="/login">
-              <Button size="lg" className="h-12 px-8 text-base rounded-lg shadow-md hover:shadow-lg transition-all gap-2 font-black cursor-pointer">
-                Get Started
+              <Button size="lg" className="h-14 px-10 text-xs rounded-lg shadow-sm bg-[#008060] hover:bg-[#006e52] text-white transition-all gap-3 font-black uppercase tracking-widest cursor-pointer">
+                Establish Pipeline
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </Link>
             <Link href="https://github.com/bureaucrat-svg/sheetflow" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" variant="outline" className="h-12 px-8 text-base rounded-lg cursor-pointer gap-2 w-full font-bold">
+              <Button size="lg" variant="outline" className="h-14 px-10 text-xs rounded-lg cursor-pointer gap-3 w-full font-black uppercase tracking-widest border-[#e1e3e5] bg-white hover:bg-[#f6f6f7] text-[#202223]">
                 <GithubIcon className="h-4 w-4" />
-                View on GitHub
+                Source Protocol
               </Button>
             </Link>
           </div>
 
-          {/* Compact Step Visualization */}
-          <div className="pt-16 w-full max-w-5xl">
-             <div className="relative grid md:grid-cols-3 gap-6 bg-background p-6 rounded-lg border shadow-sm">
+          {/* Visualization Section */}
+          <div className="pt-24 w-full max-w-6xl">
+             <div className="grid md:grid-cols-3 gap-8 text-left">
                 {[
-                  { icon: MousePointer2, title: "1. Map Schema", desc: "Define your data structure for perfect validation.", color: "primary" },
-                  { icon: ShieldCheck, title: "2. Validate JSON", desc: "Every push is verified against your rules instantly.", color: "emerald-600" },
-                  { icon: Database, title: "3. Organized Sync", desc: "Clean data lands in your Google Sheet.", color: "yellow-600" }
+                  { icon: MousePointer2, title: "Schema Mapping", desc: "Define your data architecture with precise JSON validation rules.", color: "bg-[#008060]/10 text-[#008060]" },
+                  { icon: ShieldCheck, title: "Validation Logic", desc: "Every transmission is verified against your schema before execution.", color: "bg-[#008060]/10 text-[#008060]" },
+                  { icon: Database, title: "Data Integrity", desc: "Clean, structured data is relayed to your Google Sheets instantly.", color: "bg-[#008060]/10 text-[#008060]" }
                 ].map((step, i) => (
-                  <div key={i} className="flex flex-col items-center space-y-3 text-center p-4 rounded-lg hover:bg-muted/30 transition-colors group">
-                    <div className={cn("h-12 w-12 rounded-lg flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform", 
-                      i === 0 ? "bg-primary/10 text-primary" : 
-                      i === 1 ? "bg-emerald-500/10 text-emerald-600" : 
-                      "bg-yellow-500/10 text-yellow-600"
-                    )}>
+                  <div key={i} className="flex flex-col space-y-5 p-8 rounded-xl bg-[#f9fafb] border border-[#e1e3e5] hover:border-[#008060] transition-all group">
+                    <div className={cn("h-12 w-12 rounded-lg flex items-center justify-center shadow-inner", step.color)}>
                       <step.icon className="h-6 w-6" />
                     </div>
-                    <div className="space-y-1">
-                       <h4 className="font-black text-base uppercase italic tracking-tight">{step.title}</h4>
-                       <p className="text-xs text-muted-foreground leading-relaxed">{step.desc}</p>
+                    <div className="space-y-2">
+                       <h4 className="font-black text-xs uppercase tracking-widest text-[#202223] italic">{step.title}</h4>
+                       <p className="text-sm text-[#6d7175] leading-relaxed font-medium">{step.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -93,82 +85,69 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Advanced Visualization Section - More Compact */}
-      <section className="w-full bg-muted/30 py-20 border-y">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center space-y-3 mb-12">
-             <h2 className="text-3xl font-black tracking-tight uppercase italic">JSON Validation Engine</h2>
-             <p className="text-muted-foreground text-base max-w-xl mx-auto font-medium">We ensure data integrity before it ever touches your spreadsheet.</p>
+      {/* Logic Visualization */}
+      <section className="w-full py-24 bg-[#f6f6f7]">
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="text-center space-y-4 mb-16">
+             <h2 className="text-4xl font-black tracking-tighter text-[#202223] uppercase italic">Validation Engine</h2>
+             <p className="text-[#6d7175] text-lg max-w-2xl mx-auto font-medium">Ensuring data integrity across the entire automation stack.</p>
           </div>
 
-          <div className="grid lg:grid-cols-12 gap-4 items-center max-w-6xl mx-auto">
-             {/* Left: Raw JSON Input */}
-             <div className="lg:col-span-4 space-y-0">
-                <div className="flex items-center gap-2 px-3 py-2 rounded-t-lg bg-zinc-800 text-zinc-400 text-[10px] font-black tracking-widest border-x border-t border-zinc-700 uppercase">
-                   <Send className="h-3 w-3" />
-                   <span>Incoming Payload</span>
+          <div className="grid lg:grid-cols-12 gap-8 items-center max-w-6xl mx-auto">
+             {/* Left: Input */}
+             <div className="lg:col-span-5 space-y-0">
+                <div className="flex items-center gap-3 px-4 py-3 rounded-t-lg bg-[#202223] text-white text-[10px] font-black tracking-widest uppercase">
+                   <Send className="h-4 w-4 opacity-60" />
+                   <span>Incoming JSON Payload</span>
                 </div>
-                <div className="p-5 bg-zinc-900 rounded-b-lg shadow-xl border border-zinc-800 font-mono text-xs text-emerald-400">
-                   <pre className="leading-relaxed"><code>{`{
-  "customer": "Alex Rivera",
-  "email": "alex@example.com",
-  "amount": 49.99,
-  "status": "paid"
+                <div className="p-8 bg-[#0b0c0d] rounded-b-lg shadow-xl border border-[#1a1c1d] font-mono text-xs text-[#aeb4b9] leading-relaxed">
+                   <pre><code>{`{
+  "customer": "Sarah Connor",
+  "email": "sarah@skynet.com",
+  "tier": "enterprise",
+  "status": "authorized"
 }`}</code></pre>
                 </div>
              </div>
 
-             {/* Middle: Smart Checks */}
-             <div className="lg:col-span-1 flex flex-col items-center justify-center gap-4 py-6 lg:py-0">
-                {[
-                  { icon: Shield, label: "Schema", color: "primary" },
-                  { icon: Search, label: "Types", color: "emerald" },
-                  { icon: Fingerprint, label: "Identity", color: "purple" }
-                ].map((item, i) => (
-                  <div key={i} className="group flex flex-col items-center gap-1">
-                    <div className={cn("h-10 w-10 rounded-lg flex items-center justify-center shadow-sm border bg-background group-hover:scale-110 transition-all", 
-                      i === 0 ? "text-primary border-primary/20" : 
-                      i === 1 ? "text-emerald-600 border-emerald-200" : 
-                      "text-purple-600 border-purple-200"
-                    )}>
-                      <item.icon className="h-5 w-5" />
-                    </div>
+             {/* Middle: Controls */}
+             <div className="lg:col-span-2 flex flex-col items-center justify-center gap-6 py-10 lg:py-0">
+                {[Shield, Search, Fingerprint].map((Icon, i) => (
+                  <div key={i} className="h-12 w-12 rounded-xl bg-white border border-[#e1e3e5] flex items-center justify-center text-[#008060] shadow-xs">
+                    <Icon className="h-6 w-6" />
                   </div>
                 ))}
              </div>
 
-             {/* Right: Google Sheet Result */}
-             <div className="lg:col-span-7 space-y-0">
-                <div className="flex items-center gap-2 px-3 py-2 rounded-t-lg bg-emerald-600 text-white text-[10px] font-black tracking-widest border-x border-t border-emerald-500 uppercase">
-                   <FileSpreadsheet className="h-3 w-3" />
-                   <span>Sheet Output</span>
+             {/* Right: Output */}
+             <div className="lg:col-span-5 space-y-0">
+                <div className="flex items-center gap-3 px-4 py-3 rounded-t-lg bg-[#008060] text-white text-[10px] font-black tracking-widest uppercase">
+                   <FileSpreadsheet className="h-4 w-4 opacity-60" />
+                   <span>Google Sheets Relay</span>
                 </div>
-                <div className="bg-background rounded-b-lg shadow-xl border border-border overflow-hidden">
+                <div className="bg-white rounded-b-lg shadow-xl border border-[#e1e3e5] overflow-hidden">
                    <div className="overflow-x-auto">
-                      <table className="w-full text-[11px] min-w-[500px]">
-                         <thead className="bg-muted/50 border-b">
+                      <table className="w-full text-[10px] min-w-[400px]">
+                         <thead className="bg-[#fafafa] border-b border-[#e1e3e5]">
                             <tr>
-                               <th className="p-3 text-left font-black uppercase tracking-tighter text-muted-foreground whitespace-nowrap">Customer</th>
-                               <th className="p-3 text-left font-black uppercase tracking-tighter text-muted-foreground whitespace-nowrap">Email</th>
-                               <th className="p-3 text-left font-black uppercase tracking-tighter text-muted-foreground whitespace-nowrap">Amount</th>
-                               <th className="p-3 text-left font-black uppercase tracking-tighter text-muted-foreground whitespace-nowrap">Status</th>
+                               <th className="p-4 text-left font-black uppercase tracking-widest text-[#6d7175]">Identity</th>
+                               <th className="p-4 text-left font-black uppercase tracking-widest text-[#6d7175]">Email</th>
+                               <th className="p-4 text-left font-black uppercase tracking-widest text-[#6d7175]">Status</th>
                             </tr>
                          </thead>
-                         <tbody className="divide-y">
-                            <tr className="bg-emerald-50/20">
-                               <td className="p-3 font-bold whitespace-nowrap">Alex Rivera</td>
-                               <td className="p-3 whitespace-nowrap">alex@example.com</td>
-                               <td className="p-3 font-bold text-primary whitespace-nowrap">$49.99</td>
-                               <td className="p-3 whitespace-nowrap">
-                                  <span className="px-2 py-0.5 bg-emerald-100 text-emerald-700 rounded text-[9px] font-black uppercase">Paid</span>
+                         <tbody className="divide-y divide-[#f1f2f3]">
+                            <tr>
+                               <td className="p-4 font-bold text-[#202223]">Sarah Connor</td>
+                               <td className="p-4 text-[#6d7175]">sarah@skynet.com</td>
+                               <td className="p-4">
+                                  <span className="px-2 py-0.5 bg-[#e3f1df] text-[#008060] rounded-full text-[9px] font-black uppercase tracking-tight border border-[#bbe5b3]">Active</span>
                                </td>
                             </tr>
-                            <tr className="opacity-40">
-                               <td className="p-3 whitespace-nowrap">Sarah Chen</td>
-                               <td className="p-3 whitespace-nowrap">sarah@gmail.com</td>
-                               <td className="p-3 font-bold text-primary whitespace-nowrap">$19.00</td>
-                               <td className="p-3 whitespace-nowrap">
-                                  <span className="px-2 py-0.5 bg-zinc-100 text-zinc-700 rounded text-[9px] font-black uppercase">Pending</span>
+                            <tr className="opacity-40 bg-[#fafafa]">
+                               <td className="p-4 font-bold text-[#202223]">Kyle Reese</td>
+                               <td className="p-4 text-[#6d7175]">kyle@rebel.org</td>
+                               <td className="p-4">
+                                  <span className="px-2 py-0.5 bg-[#f1f2f3] text-[#6d7175] rounded-full text-[9px] font-black uppercase tracking-tight border border-[#e1e3e5]">Pending</span>
                                </td>
                             </tr>
                          </tbody>
@@ -180,84 +159,49 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Transparency Section */}
-      <section className="w-full py-20">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
-            <div className="space-y-6">
-               <h2 className="text-3xl font-black tracking-tight uppercase italic">100% Transparent</h2>
-               <p className="text-base text-muted-foreground leading-relaxed">
-                 Most automation tools are black boxes. We believe your data pipeline should be transparent, secure, and community-driven.
-               </p>
-               <div className="space-y-3 pt-2">
-                  {[
-                    "Self-hostable architecture",
-                    "Community audited codebase",
-                    "No proprietary locking"
-                  ].map((text, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                      <span className="font-bold text-sm text-foreground">{text}</span>
-                    </div>
-                  ))}
-               </div>
-            </div>
-            <div className="bg-primary rounded-lg p-10 md:p-14 text-center space-y-6 relative overflow-hidden shadow-xl">
-              <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-white/10 rounded-lg rotate-12" />
-              <h2 className="text-2xl md:text-4xl font-black text-white tracking-tight relative z-10 leading-tight italic uppercase">Join the community</h2>
-              <div className="pt-2 relative z-10">
-                <Link href="/login">
-                  <Button size="lg" variant="secondary" className="h-12 px-10 text-base rounded-lg font-black shadow-lg cursor-pointer">
-                    Get Started Free
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
+      {/* Community Section */}
+      <section className="w-full py-32 bg-white border-y border-[#e1e3e5]">
+        <div className="container mx-auto px-4 md:px-8 text-center max-w-4xl space-y-12">
+           <h2 className="text-4xl font-black tracking-tighter text-[#202223] uppercase italic leading-none">Engineered for Transparency</h2>
+           <p className="text-[#6d7175] text-xl font-medium leading-relaxed">
+             Most automation platforms are black boxes. We believe your data pipelines should be transparent, secure, and community-driven.
+           </p>
+           <div className="grid md:grid-cols-3 gap-8 text-center">
+              {[
+                { title: "Open Source", desc: "Full auditability of every data transmission." },
+                { title: "No Vendor Lock", desc: "Deploy on any infrastructure, at any scale." },
+                { title: "Enterprise Grade", desc: "Rigorous JSON validation out of the box." }
+              ].map((item, i) => (
+                <div key={i} className="space-y-3">
+                   <h4 className="font-black text-xs uppercase tracking-widest text-[#202223] italic">{item.title}</h4>
+                   <p className="text-sm text-[#6d7175] font-medium leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+           </div>
+           <div className="pt-8">
+              <Link href="/login">
+                <Button size="lg" className="h-14 px-12 text-xs rounded-lg shadow-sm bg-[#008060] hover:bg-[#006e52] text-white transition-all font-black uppercase tracking-widest">
+                  Initialize Free Account
+                </Button>
+              </Link>
+           </div>
         </div>
       </section>
 
-      {/* Benefits Grid */}
-      <section className="container mx-auto py-20 px-4 border-t">
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {[
-            { icon: Code, title: "Pure Code", desc: "Public codebase. No hidden trackers, no proprietary black boxes.", color: "blue" },
-            { icon: ShieldCheck, title: "Schema Guard", desc: "Strict JSON validation before any data touches your sheets.", color: "emerald" },
-            { icon: Globe, title: "Global Access", desc: "Built by the community, for everyone. Hosted anywhere.", color: "purple" }
-          ].map((benefit, i) => (
-            <div key={i} className="space-y-4">
-              <div className={cn("h-10 w-10 rounded-lg flex items-center justify-center transition-transform", 
-                i === 0 ? "bg-blue-500/10 text-blue-600" : 
-                i === 1 ? "bg-emerald-500/10 text-emerald-600" : 
-                "bg-purple-500/10 text-purple-600"
-              )}>
-                <benefit.icon className="h-5 w-5" />
-              </div>
-              <h3 className="text-lg font-black uppercase italic tracking-tight">{benefit.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed font-medium">
-                {benefit.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Footer - Compact */}
-      <footer className="w-full py-10 border-t bg-muted/20">
-        <div className="container mx-auto px-4 md:px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-2 font-black text-lg tracking-tight italic uppercase">
-            <div className="bg-primary/10 p-1 rounded-lg">
-              <FileSpreadsheet className="h-5 w-5 text-primary" />
+      {/* Footer */}
+      <footer className="w-full py-16 bg-[#f6f6f7]">
+        <div className="container mx-auto px-4 md:px-8 flex flex-col md:flex-row justify-between items-center gap-10">
+          <div className="flex items-center gap-4 text-[#202223] font-black text-2xl tracking-tighter italic uppercase">
+            <div className="bg-white border border-[#e1e3e5] p-2 rounded-xl text-[#008060] shadow-xs">
+              <FileSpreadsheet className="h-6 w-6" />
             </div>
             <span>SheetFlow</span>
           </div>
-          <p className="text-[11px] text-muted-foreground font-bold uppercase tracking-widest">
-            © 2026 SheetFlow • MIT License
-          </p>
-          <Link href="https://github.com/bureaucrat-svg/sheetflow" target="_blank" rel="noopener noreferrer" className="text-xs font-black uppercase tracking-widest hover:text-primary transition-colors flex items-center gap-2">
-            <GithubIcon className="h-4 w-4" />
-            GitHub
-          </Link>
+          <div className="flex items-center gap-10 text-[10px] font-black uppercase tracking-widest text-[#6d7175]">
+             <Link href="https://github.com/bureaucrat-svg/sheetflow" className="hover:text-[#008060] transition-colors">Documentation</Link>
+             <Link href="https://github.com/bureaucrat-svg/sheetflow" className="hover:text-[#008060] transition-colors">GitHub Protocol</Link>
+             <span>© 2026 MIT License</span>
+          </div>
         </div>
       </footer>
     </div>
