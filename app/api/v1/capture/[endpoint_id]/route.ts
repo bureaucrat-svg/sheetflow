@@ -3,6 +3,26 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import axios from "axios";
 
+const CORS_HEADERS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization",
+};
+
+function withCors(response: NextResponse) {
+  Object.entries(CORS_HEADERS).forEach(([key, value]) => {
+    response.headers.set(key, value);
+  });
+  return response;
+}
+
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 204,
+    headers: CORS_HEADERS,
+  });
+}
+
 export async function POST(
   req: NextRequest,
   { params }: { params: Promise<{ endpoint_id: string }> }
@@ -15,18 +35,24 @@ export async function POST(
     });
 
     if (!endpoint) {
-      return NextResponse.json({ error: "Endpoint not found" }, { status: 404 });
+      return withCors(
+        NextResponse.json({ error: "Endpoint not found" }, { status: 404 })
+      );
     }
 
     if (!endpoint.isActive) {
-      return NextResponse.json({ error: "Endpoint is inactive" }, { status: 403 });
+      return withCors(
+        NextResponse.json({ error: "Endpoint is inactive" }, { status: 403 })
+      );
     }
 
     let body;
     try {
       body = await req.json();
     } catch {
-      return NextResponse.json({ error: "Invalid JSON payload" }, { status: 400 });
+      return withCors(
+        NextResponse.json({ error: "Invalid JSON payload" }, { status: 400 })
+      );
     }
 
     // Dynamically build Zod schema
@@ -60,9 +86,11 @@ export async function POST(
     const validationResult = dynamicSchema.safeParse(body);
 
     if (!validationResult.success) {
-      return NextResponse.json(
-        { error: "Validation failed", details: validationResult.error.format() },
-        { status: 400 }
+      return withCors(
+        NextResponse.json(
+          { error: "Validation failed", details: validationResult.error.format() },
+          { status: 400 }
+        )
       );
     }
 
@@ -78,17 +106,24 @@ export async function POST(
         if (error.response) {
           console.error("Google Script Error Response:", error.response.status, error.response.data);
         }
-        return NextResponse.json({ 
-          status: "partial_success", 
-          error: "Failed to forward to Google Sheets",
-          details: error.message 
-        }, { status: 502 });
+        return withCors(
+          NextResponse.json(
+            {
+              status: "partial_success",
+              error: "Failed to forward to Google Sheets",
+              details: error.message,
+            },
+            { status: 502 }
+          )
+        );
       }
     }
 
-    return NextResponse.json({ status: "success" });
+    return withCors(NextResponse.json({ status: "success" }));
   } catch (error: any) {
     console.error("API Capture Error:", error.message);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return withCors(
+      NextResponse.json({ error: "Internal Server Error" }, { status: 500 })
+    );
   }
 }
