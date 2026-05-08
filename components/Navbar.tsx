@@ -20,9 +20,14 @@ export async function Navbar() {
         <div className="flex items-center gap-2 md:gap-4">
           {user ? (
             <>
-              <Link href="/dashboard" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors px-2 md:px-3 py-2 rounded-lg hover:bg-primary/5 cursor-pointer">
-                Dashboard
-              </Link>
+              <div className="flex items-center gap-3">
+                <span className="hidden sm:inline text-xs text-muted-foreground font-medium">
+                  Hi, {user.user_metadata?.full_name?.split(' ')[0] || 'User'}
+                </span>
+                <Link href="/dashboard" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors px-2 md:px-3 py-2 rounded-lg hover:bg-primary/5 cursor-pointer">
+                  Dashboard
+                </Link>
+              </div>
               <SignOutButton />
             </>
           ) : (

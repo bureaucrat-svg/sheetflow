@@ -10,6 +10,12 @@ export default async function ManageEndpointPage({
 }) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) {
+    const { redirect } = await import("next/navigation");
+    redirect("/login");
+  }
+
   const { endpoint_id } = await params;
 
   const endpoint = await prisma.endpoint.findUnique({
@@ -21,8 +27,10 @@ export default async function ManageEndpointPage({
   }
 
   return (
-    <div className="container py-10">
-      <ManageEndpointForm endpoint={endpoint} />
+    <div className="bg-muted/30 min-h-[calc(100vh-64px)]">
+      <div className="container py-10 px-4 md:px-6">
+        <ManageEndpointForm endpoint={endpoint} />
+      </div>
     </div>
   );
 }

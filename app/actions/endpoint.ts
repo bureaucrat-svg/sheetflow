@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 
 const FieldSchema = z.object({
-  name: z.string().min(1),
+  name: z.string().min(1).regex(/^[a-zA-Z0-9_]+$/, "Field name must only contain letters, numbers, and underscores (no spaces)"),
   type: z.enum(["string", "number", "boolean"]),
   required: z.boolean(),
 });
