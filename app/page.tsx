@@ -58,10 +58,12 @@ export default function Home() {
                 <ArrowRight className="h-5 w-5" />
               </Button>
             </Link>
-            <Button size="lg" variant="outline" className="h-14 px-10 text-lg rounded-lg cursor-pointer gap-2">
-              <GithubIcon className="h-5 w-5" />
-              Star on GitHub
-            </Button>
+            <Link href="https://github.com/bureaucrat-svg/sheetflow" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" variant="outline" className="h-14 px-10 text-lg rounded-lg cursor-pointer gap-2 w-full">
+                <GithubIcon className="h-5 w-5" />
+                Star on GitHub
+              </Button>
+            </Link>
           </div>
 
           {/* Unified Step Visualization (Single Line) */}
@@ -295,6 +297,27 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="w-full py-12 border-t bg-muted/20">
+        <div className="container mx-auto px-4 md:px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-2 font-bold text-xl tracking-tight">
+            <div className="bg-primary/10 p-1.5 rounded-lg">
+              <FileSpreadsheet className="h-6 w-6 text-primary" />
+            </div>
+            <span>SheetFlow</span>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            © 2026 SheetFlow. Released under the MIT License.
+          </p>
+          <div className="flex items-center gap-6">
+            <Link href="https://github.com/bureaucrat-svg/sheetflow" target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-2">
+              <GithubIcon className="h-4 w-4" />
+              GitHub
+            </Link>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
