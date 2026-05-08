@@ -15,8 +15,8 @@ const robotoMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SheetFlow | Validated JSON to Google Sheets",
-  description: "SheetFlow is 100% open-source. You can inspect the code, host it yourself, and contribute to making data automation more reliable for everyone.",
+  title: "SheetFlow | Simple Data Entry for Google Sheets",
+  description: "The easiest way to automatically send information from your apps to Google Sheets. No more manual entry, just clean data.",
   icons: {
     icon: [
       { url: "/favicon.ico" },

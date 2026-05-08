@@ -1,19 +1,19 @@
 # SheetFlow 🌊
 
-**The most reliable, open-source way to push validated JSON data to Google Sheets via webhooks.**
+**The easiest way to automatically send information from your apps to Google Sheets.**
 
-SheetFlow is a transparent, secure, and community-driven automation tool designed to bridge the gap between your applications and spreadsheets. Unlike black-box automation platforms, SheetFlow ensures every piece of data is validated against your schema before it ever touches your sheet.
+SheetFlow is a simple, open-source tool that helps you move data from your favorite apps directly into your spreadsheets. No more manual data entry, no more messy sheets—just clean, automated updates whenever you need them.
 
 [![GitHub Star](https://img.shields.io/github/stars/bureaucrat-svg/sheetflow?style=social)](https://github.com/bureaucrat-svg/sheetflow)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## ✨ Features
 
-- **🛡️ Strict Schema Validation**: Define your data structure (string, number, boolean) and enforce it. No more messy spreadsheets.
-- **🚀 Real-time Webhooks**: Instant data transfer from any application that supports webhooks.
-- **🔓 100% Open Source**: Full transparency and community-driven improvements.
-- **🛠️ Self-Hostable**: Own your data pipeline entirely by hosting it on your own infrastructure.
-- **📊 Google Sheets Integration**: Seamlessly syncs with Google Sheets via App Script.
+- **🛡️ Clean & Accurate**: Choose exactly which information you want to save, and we'll make sure it's correct every time.
+- **🚀 Instant Updates**: Information moves from your apps to your sheets the moment it happens.
+- **🔓 100% Open Source**: Completely free to use, inspect, and improve.
+- **🛠️ You Own Your Data**: Host it yourself and keep your information private.
+- **📊 Works with Google Sheets**: Seamlessly connects to your existing spreadsheets.
 
 ## 🛠️ Tech Stack
 

@@ -4,8 +4,8 @@ import { ArrowRight, FileSpreadsheet, ShieldCheck, Zap, Globe, MousePointer2, Se
 import { cn } from "@/lib/utils";
 
 export const metadata = {
-  title: "SheetFlow | Open Source Validated JSON to Google Sheets",
-  description: "The most reliable and open-source validated way to push any JSON data to Google Sheets via webhooks with automatic schema checks.",
+  title: "SheetFlow | Simple Data Entry for Google Sheets",
+  description: "The easiest way to automatically send information from your apps to Google Sheets. No more manual entry, just clean data.",
 };
 
 const GithubIcon = ({ className }: { className?: string }) => (
@@ -40,24 +40,24 @@ export default function Home() {
           </div>
           
           <h1 className="text-5xl md:text-7xl font-black tracking-tighter max-w-5xl leading-none text-[#202223] uppercase italic">
-            The <span className="text-[#008060]">Standard</span> for JSON to Sheets
+            Automate your <span className="text-[#008060]">Data Entry</span> into Sheets
           </h1>
           
           <p className="text-xl text-[#6d7175] max-w-3xl leading-relaxed font-medium">
-            Deploy a **validated, open-source pipeline** to push JSON data via webhooks with automatic schema checks. Built for reliability, transparency, and speed.
+            Connect your apps to Google Sheets in minutes. No more manual data entry or messy spreadsheets—just clean, automated data whenever you need it.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-5 pt-4">
             <Link href="/login">
               <Button size="lg" className="h-14 px-10 text-xs rounded-lg shadow-sm bg-[#008060] hover:bg-[#006e52] text-white transition-all gap-3 font-black uppercase tracking-widest cursor-pointer">
-                Establish Pipeline
+                Get Started Free
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </Link>
             <Link href="https://github.com/bureaucrat-svg/sheetflow" target="_blank" rel="noopener noreferrer">
               <Button size="lg" variant="outline" className="h-14 px-10 text-xs rounded-lg cursor-pointer gap-3 w-full font-black uppercase tracking-widest border-[#e1e3e5] bg-white hover:bg-[#f6f6f7] text-[#202223]">
                 <GithubIcon className="h-4 w-4" />
-                Source Protocol
+                View on GitHub
               </Button>
             </Link>
           </div>
@@ -66,9 +66,9 @@ export default function Home() {
           <div className="pt-24 w-full max-w-6xl">
              <div className="grid md:grid-cols-3 gap-8 text-left">
                 {[
-                  { icon: MousePointer2, title: "Schema Mapping", desc: "Define your data architecture with precise JSON validation rules.", color: "bg-[#008060]/10 text-[#008060]" },
-                  { icon: ShieldCheck, title: "Validation Logic", desc: "Every transmission is verified against your schema before execution.", color: "bg-[#008060]/10 text-[#008060]" },
-                  { icon: Database, title: "Data Integrity", desc: "Clean, structured data is relayed to your Google Sheets instantly.", color: "bg-[#008060]/10 text-[#008060]" }
+                  { icon: MousePointer2, title: "Choose Your Columns", desc: "Select exactly which information you want to save in your spreadsheet.", color: "bg-[#008060]/10 text-[#008060]" },
+                  { icon: ShieldCheck, title: "Clean & Accurate", desc: "We check every piece of data to make sure it fits perfectly into your sheet.", color: "bg-[#008060]/10 text-[#008060]" },
+                  { icon: Database, title: "Real-Time Sync", desc: "New information shows up in your Google Sheet the moment it happens.", color: "bg-[#008060]/10 text-[#008060]" }
                 ].map((step, i) => (
                   <div key={i} className="flex flex-col space-y-5 p-8 rounded-xl bg-[#f9fafb] border border-[#e1e3e5] hover:border-[#008060] transition-all group">
                     <div className={cn("h-12 w-12 rounded-lg flex items-center justify-center shadow-inner", step.color)}>
@@ -89,8 +89,8 @@ export default function Home() {
       <section className="w-full py-24 bg-[#f6f6f7]">
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center space-y-4 mb-16">
-             <h2 className="text-4xl font-black tracking-tighter text-[#202223] uppercase italic">Validation Engine</h2>
-             <p className="text-[#6d7175] text-lg max-w-2xl mx-auto font-medium">Ensuring data integrity across the entire automation stack.</p>
+             <h2 className="text-4xl font-black tracking-tighter text-[#202223] uppercase italic">How It Works</h2>
+             <p className="text-[#6d7175] text-lg max-w-2xl mx-auto font-medium">We take data from your app, check it for accuracy, and put it right where it belongs.</p>
           </div>
 
           <div className="grid lg:grid-cols-12 gap-8 items-center max-w-6xl mx-auto">
@@ -98,7 +98,7 @@ export default function Home() {
              <div className="lg:col-span-5 space-y-0">
                 <div className="flex items-center gap-3 px-4 py-3 rounded-t-lg bg-[#202223] text-white text-[10px] font-black tracking-widest uppercase">
                    <Send className="h-4 w-4 opacity-60" />
-                   <span>Incoming JSON Payload</span>
+                   <span>Data from Your App</span>
                 </div>
                 <div className="p-8 bg-[#0b0c0d] rounded-b-lg shadow-xl border border-[#1a1c1d] font-mono text-xs text-[#aeb4b9] leading-relaxed">
                    <pre><code>{`{
@@ -123,14 +123,14 @@ export default function Home() {
              <div className="lg:col-span-5 space-y-0">
                 <div className="flex items-center gap-3 px-4 py-3 rounded-t-lg bg-[#008060] text-white text-[10px] font-black tracking-widest uppercase">
                    <FileSpreadsheet className="h-4 w-4 opacity-60" />
-                   <span>Google Sheets Relay</span>
+                   <span>Your Google Sheet</span>
                 </div>
                 <div className="bg-white rounded-b-lg shadow-xl border border-[#e1e3e5] overflow-hidden">
                    <div className="overflow-x-auto">
                       <table className="w-full text-[10px] min-w-[400px]">
                          <thead className="bg-[#fafafa] border-b border-[#e1e3e5]">
                             <tr>
-                               <th className="p-4 text-left font-black uppercase tracking-widest text-[#6d7175]">Identity</th>
+                               <th className="p-4 text-left font-black uppercase tracking-widest text-[#6d7175]">Customer Name</th>
                                <th className="p-4 text-left font-black uppercase tracking-widest text-[#6d7175]">Email</th>
                                <th className="p-4 text-left font-black uppercase tracking-widest text-[#6d7175]">Status</th>
                             </tr>
@@ -162,15 +162,15 @@ export default function Home() {
       {/* Community Section */}
       <section className="w-full py-32 bg-white border-y border-[#e1e3e5]">
         <div className="container mx-auto px-4 md:px-8 text-center max-w-4xl space-y-12">
-           <h2 className="text-4xl font-black tracking-tighter text-[#202223] uppercase italic leading-none">Engineered for Transparency</h2>
+           <h2 className="text-4xl font-black tracking-tighter text-[#202223] uppercase italic leading-none">Built to be Open and Free</h2>
            <p className="text-[#6d7175] text-xl font-medium leading-relaxed">
-             Most automation platforms are black boxes. We believe your data pipelines should be transparent, secure, and community-driven.
+             We believe automation should be simple and open. Your data belongs to you, and we help you move it safely.
            </p>
            <div className="grid md:grid-cols-3 gap-8 text-center">
               {[
-                { title: "Open Source", desc: "Full auditability of every data transmission." },
-                { title: "No Vendor Lock", desc: "Deploy on any infrastructure, at any scale." },
-                { title: "Enterprise Grade", desc: "Rigorous JSON validation out of the box." }
+                { title: "100% Free & Open", desc: "Anyone can see how it works. No hidden fees or secret rules." },
+                { title: "You Own Your Data", desc: "Move your data wherever you want. You're never stuck with us." },
+                { title: "Reliable & Fast", desc: "Built to handle your most important information without breaking." }
               ].map((item, i) => (
                 <div key={i} className="space-y-3">
                    <h4 className="font-black text-xs uppercase tracking-widest text-[#202223] italic">{item.title}</h4>
@@ -181,7 +181,7 @@ export default function Home() {
            <div className="pt-8">
               <Link href="/login">
                 <Button size="lg" className="h-14 px-12 text-xs rounded-lg shadow-sm bg-[#008060] hover:bg-[#006e52] text-white transition-all font-black uppercase tracking-widest">
-                  Initialize Free Account
+                  Create Your Free Account
                 </Button>
               </Link>
            </div>

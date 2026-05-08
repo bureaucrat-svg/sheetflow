@@ -81,7 +81,7 @@ export function NewEndpointForm() {
              <div className="space-y-1">
                 <h1 className="text-3xl font-black tracking-tighter text-[#202223] uppercase italic">Create Flow</h1>
                 <p className="text-[#6d7175] text-sm font-medium">
-                  Define your data structure and automation pipeline.
+                  Set up your automated data flow.
                 </p>
              </div>
           </div>
@@ -91,16 +91,16 @@ export function NewEndpointForm() {
           {/* Section 1: Identity */}
           <section className="space-y-5">
              <div className="flex items-center gap-3">
-                <div className="h-6 w-6 rounded bg-[#202223] text-white flex items-center justify-center text-[10px] font-black shadow-sm">1</div>
-                <h3 className="text-xs font-black uppercase tracking-[0.15em] text-[#6d7175]">Flow Identity</h3>
-             </div>
+                 <div className="h-6 w-6 rounded bg-[#202223] text-white flex items-center justify-center text-[10px] font-black shadow-sm">1</div>
+                 <h3 className="text-xs font-black uppercase tracking-[0.15em] text-[#6d7175]">Name Your Flow</h3>
+              </div>
              <Card className="rounded-lg border-[#e1e3e5] shadow-xs overflow-hidden bg-white">
                 <CardContent className="p-8">
                    <div className="space-y-4">
                       <Label htmlFor="name" className="text-[10px] font-black uppercase tracking-widest text-[#6d7175] flex items-center gap-2">
-                         <Layout className="h-4 w-4 text-[#008060]" />
-                         Administrative Name
-                      </Label>
+                          <Layout className="h-4 w-4 text-[#008060]" />
+                          Flow Name
+                       </Label>
                       <Input
                         id="name"
                         placeholder="e.g. Shopify Orders to Google Sheets"
@@ -120,15 +120,15 @@ export function NewEndpointForm() {
           {/* Section 2: Data Schema */}
           <section className="space-y-5">
              <div className="flex items-center gap-3">
-                <div className="h-6 w-6 rounded bg-[#202223] text-white flex items-center justify-center text-[10px] font-black shadow-sm">2</div>
-                <h3 className="text-xs font-black uppercase tracking-[0.15em] text-[#6d7175]">Data Architecture</h3>
-             </div>
+                 <div className="h-6 w-6 rounded bg-[#202223] text-white flex items-center justify-center text-[10px] font-black shadow-sm">2</div>
+                 <h3 className="text-xs font-black uppercase tracking-[0.15em] text-[#6d7175]">Data Columns</h3>
+              </div>
              <Card className="rounded-lg border-[#e1e3e5] shadow-xs overflow-hidden bg-white">
                 <CardHeader className="bg-[#fafafa] pb-4 pt-4 border-b border-[#e1e3e5] px-8 flex flex-row items-center justify-between space-y-0">
                   <div className="flex items-center gap-3">
-                     <Layers className="h-4 w-4 text-[#008060]" />
-                     <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#6d7175]">Field Definitions</span>
-                  </div>
+                      <Layers className="h-4 w-4 text-[#008060]" />
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#6d7175]">What data should we collect?</span>
+                   </div>
                   <Button variant="outline" size="sm" onClick={addField} type="button" className="rounded-lg h-8 px-4 gap-2 border-[#e1e3e5] bg-white text-[#008060] hover:bg-[#e3f1df] hover:border-[#bbe5b3] transition-all font-black text-[9px] uppercase tracking-widest">
                       <Plus className="h-3.5 w-3.5" />
                       Add Property
@@ -143,7 +143,7 @@ export function NewEndpointForm() {
                            <div className="grid gap-3 flex-1 w-full">
                              <Label className="font-black text-[9px] uppercase tracking-widest text-[#6d7175] flex items-center gap-1.5">
                                 <Database className="h-3 w-3 opacity-60" />
-                                Key Identifier
+                                Column Name
                              </Label>
                              <Input
                                placeholder="e.g. customer_id"
@@ -211,7 +211,7 @@ export function NewEndpointForm() {
           </Link>
           <Button size="lg" className="bg-[#008060] hover:bg-[#006e52] text-white rounded-lg h-12 px-12 text-xs font-black uppercase tracking-widest gap-3 shadow-sm transition-all w-full sm:w-auto" type="submit" disabled={isPending}>
             {isPending ? <Sparkles className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
-            {isPending ? "Configuring..." : "Establish Pipeline"}
+            {isPending ? "Configuring..." : "Create Flow"}
           </Button>
         </div>
       </form>

@@ -146,7 +146,7 @@ console.log(result);`
           </div>
           <Button variant="outline" size="sm" className="rounded-lg h-10 px-5 gap-2 border-[#e1e3e5] bg-white text-[#d72c0d] hover:bg-[#fff4f2] hover:border-[#f8d7da] transition-all font-black text-[10px] uppercase tracking-widest shadow-xs" onClick={handleDelete} disabled={isPending}>
              <Trash2 className="h-4 w-4" />
-             Archive Pipeline
+             Delete Flow
           </Button>
         </div>
 
@@ -157,13 +157,13 @@ console.log(result);`
             <section className="space-y-5">
                <div className="flex items-center gap-3">
                   <div className="h-6 w-6 rounded bg-[#202223] text-white flex items-center justify-center text-[10px] font-black shadow-sm">1</div>
-                  <h3 className="text-xs font-black uppercase tracking-[0.15em] text-[#6d7175]">Connection Endpoint</h3>
+                  <h3 className="text-xs font-black uppercase tracking-[0.15em] text-[#6d7175]">Your Webhook URL</h3>
                </div>
                <Card className="rounded-lg border-[#e1e3e5] shadow-xs overflow-hidden bg-white">
                   <CardContent className="p-8 space-y-8">
                      <div className="space-y-4">
                         <p className="text-sm text-[#6d7175] font-medium leading-relaxed">
-                           Use this unique URL to send data from your applications. Only payloads matching your schema will be accepted.
+                           Send your data to this unique URL. We'll check every piece of information to make sure it's correct before adding it to your sheet.
                         </p>
                         <div className="flex gap-2 bg-[#f9fafb] p-2.5 rounded-lg border border-[#e1e3e5] border-dashed focus-within:border-[#008060] transition-all">
                            <Input value={captureUrl} readOnly className="border-none bg-transparent font-mono text-[11px] focus-visible:ring-0 shadow-none h-9 text-[#202223]" />
@@ -213,7 +213,7 @@ console.log(result);`
             <section className="space-y-5">
                <div className="flex items-center gap-3">
                   <div className="h-6 w-6 rounded bg-[#202223] text-white flex items-center justify-center text-[10px] font-black shadow-sm">2</div>
-                  <h3 className="text-xs font-black uppercase tracking-[0.15em] text-[#6d7175]">Relay Configuration</h3>
+                  <h3 className="text-xs font-black uppercase tracking-[0.15em] text-[#6d7175]">Google Sheets Connection</h3>
                </div>
                <form onSubmit={handleUpdate}>
                   <Card className="rounded-lg border-[#e1e3e5] shadow-xs overflow-hidden bg-white">
@@ -234,9 +234,9 @@ console.log(result);`
                       
                       <div className="flex items-center justify-between p-6 rounded-lg bg-[#f9fafb] border border-[#e1e3e5] border-dashed">
                         <div className="space-y-1">
-                          <Label className="text-xs font-black uppercase tracking-widest text-[#202223]">Maintenance Mode</Label>
+                          <Label className="text-xs font-black uppercase tracking-widest text-[#202223]">Flow Status</Label>
                           <p className="text-[11px] text-[#6d7175] font-medium">
-                            Stop receiving data without deleting the flow.
+                            Turn this off to stop sending data to your sheet.
                           </p>
                         </div>
                         <Switch
@@ -248,7 +248,7 @@ console.log(result);`
 
                       <Button type="submit" disabled={isPending} size="lg" className="w-full bg-[#008060] hover:bg-[#006e52] text-white rounded-lg h-12 px-10 gap-2 shadow-sm font-black text-xs uppercase tracking-widest transition-all">
                          <Save className="h-4 w-4" />
-                         {isPending ? "Syncing..." : "Apply Connection Settings"}
+                         {isPending ? "Saving..." : "Save Changes"}
                       </Button>
                     </CardContent>
                   </Card>
@@ -263,19 +263,19 @@ console.log(result);`
                   <CardHeader className="bg-[#fafafa] pb-4 pt-5 border-b border-[#e1e3e5] px-8">
                      <CardTitle className="text-[10px] font-black flex items-center gap-3 uppercase tracking-[0.2em] text-[#6d7175]">
                         <LinkIcon className="h-4 w-4" />
-                        Infrastructure Setup
+                        How to set up your Google Sheet
                      </CardTitle>
                   </CardHeader>
                   <CardContent className="p-0">
                     <div className="p-8 space-y-8">
                       <ol className="space-y-5">
                          {[
-                           { step: "Spreadsheet", desc: "Initialize your target Google Sheet." },
-                           { step: "Apps Script", desc: 'Navigate to <span className="text-[#008060] font-bold">Extensions > Apps Script</span>.' },
-                           { step: "Deployment", desc: 'Replace existing logic with the template below.' },
-                           { step: "Authorization", desc: 'Execute <span className="text-[#008060] font-bold">Deploy > New Deployment</span>.' },
-                           { step: "Access Control", desc: 'Select <span className="text-[#008060] font-bold">Web App</span> and set access to <span className="text-[#d72c0d] font-black uppercase tracking-tighter">Anyone</span>.' },
-                           { step: "Finalize", desc: 'Inject the resulting URL into <span className="font-bold text-[#202223]">Section 2</span>.' }
+                           { step: "Spreadsheet", desc: "Open the Google Sheet where you want your data to go." },
+                           { step: "Apps Script", desc: 'Go to <span className="text-[#008060] font-bold">Extensions > Apps Script</span>.' },
+                           { step: "Code", desc: 'Delete everything there and paste the code from below.' },
+                           { step: "Deployment", desc: 'Click <span className="text-[#008060] font-bold">Deploy > New Deployment</span>.' },
+                           { step: "Settings", desc: 'Choose <span className="text-[#008060] font-bold">Web App</span> and set "Who has access" to <span className="text-[#d72c0d] font-black uppercase tracking-tighter">Anyone</span>.' },
+                           { step: "Finalize", desc: 'Copy the "Web App URL" and paste it into <span className="font-bold text-[#202223]">Section 2</span> above.' }
                          ].map((item, i) => (
                            <li key={i} className="flex gap-5">
                               <span className="flex-none h-6 w-6 rounded bg-[#f1f2f3] border border-[#e1e3e5] text-[#6d7175] text-[10px] font-black flex items-center justify-center">
@@ -292,7 +292,7 @@ console.log(result);`
                       <div className="pt-6 space-y-4">
                          <Label className="text-[10px] font-black uppercase tracking-widest text-[#6d7175] flex items-center gap-2">
                             <Database className="h-4 w-4" />
-                            Backend Engine Template
+                            Copy this code to Google Sheets
                          </Label>
                          <div className="rounded-lg bg-[#0b0c0d] p-5 font-mono text-[11px] leading-relaxed text-[#aeb4b9] overflow-hidden relative border border-[#1a1c1d] shadow-inner group">
                             <pre className="max-h-[300px] overflow-auto custom-scrollbar pt-2"><code>{GOOGLE_SCRIPT_TEMPLATE}</code></pre>

@@ -33,11 +33,11 @@ export async function Navbar() {
           ) : (
             <div className="flex items-center gap-3">
               <Link href="/login">
-                <Button variant="ghost" size="sm" className="rounded-lg px-5 text-[10px] font-black uppercase tracking-widest text-[#6d7175] hover:text-[#202223] cursor-pointer">Portal Access</Button>
+                <Button variant="ghost" size="sm" className="rounded-lg px-5 text-[10px] font-black uppercase tracking-widest text-[#6d7175] hover:text-[#202223] cursor-pointer">Sign In</Button>
               </Link>
               <Link href="/login">
                 <Button size="sm" className="bg-[#008060] hover:bg-[#006e52] text-white rounded-lg px-6 text-[10px] font-black uppercase tracking-widest shadow-xs transition-all cursor-pointer">
-                  Establish
+                  Get Started
                 </Button>
               </Link>
             </div>

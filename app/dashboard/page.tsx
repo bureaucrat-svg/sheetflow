@@ -33,7 +33,7 @@ export default async function DashboardPage() {
           <div className="space-y-1.5">
             <h1 className="text-3xl font-black tracking-tighter text-[#202223] uppercase italic">Dashboard</h1>
             <p className="text-[#6d7175] text-sm font-medium">
-              Manage your validated Google Sheet pipelines.
+              Manage your automated data flows to Google Sheets.
             </p>
           </div>
           <div className="flex items-center gap-3">
@@ -67,7 +67,7 @@ export default async function DashboardPage() {
             <div className="flex items-center justify-between px-1">
                <h2 className="font-black text-[10px] uppercase tracking-[0.2em] text-[#6d7175] flex items-center gap-2">
                   <Activity className="h-3.5 w-3.5 text-[#008060]" />
-                  Active Pipelines
+                  Active Data Flows
                </h2>
                <Badge variant="outline" className="bg-white border-[#e1e3e5] text-[#202223] text-[9px] font-black px-2.5 py-0.5 rounded-full">
                   {endpoints.length} Total
@@ -79,7 +79,7 @@ export default async function DashboardPage() {
                 <Table>
                   <TableHeader className="bg-[#fafafa]">
                     <TableRow className="hover:bg-transparent border-b border-[#e1e3e5]">
-                      <TableHead className="py-4 pl-6 text-[10px] font-black uppercase tracking-widest text-[#6d7175]">Pipeline Name</TableHead>
+                      <TableHead className="py-4 pl-6 text-[10px] font-black uppercase tracking-widest text-[#6d7175]">Flow Name</TableHead>
                       <TableHead className="py-4 text-[10px] font-black uppercase tracking-widest text-[#6d7175]">Status</TableHead>
                       <TableHead className="py-4 text-[10px] font-black uppercase tracking-widest text-[#6d7175]">Field Count</TableHead>
                       <TableHead className="py-4 text-[10px] font-black uppercase tracking-widest text-[#6d7175]">Created</TableHead>
