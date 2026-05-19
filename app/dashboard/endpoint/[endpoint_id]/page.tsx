@@ -27,7 +27,7 @@ export default async function ManageEndpointPage({
   }
 
   return (
-    <div className="bg-muted/30 min-h-[calc(100vh-64px)]">
+    <div className="bg-transparent min-h-[calc(100vh-64px)]">
       <div className="container py-10 px-4 md:px-6">
         <ManageEndpointForm endpoint={endpoint} />
       </div>

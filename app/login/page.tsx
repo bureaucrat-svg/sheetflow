@@ -75,40 +75,30 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-56px)] w-full flex items-center justify-center p-4 md:p-8 bg-[#fafafa] dot-grid relative">
-      {/* Decorative Fade Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/40 to-[#fafafa] pointer-events-none z-0" />
-      
+    <div className="min-h-[calc(100vh-56px)] w-full flex items-center justify-center p-4 md:p-8 bg-transparent relative">
       <div className="w-full max-w-[390px] space-y-6 relative z-10">
         
         {/* Branding Logo Block */}
-        <div className="flex flex-col items-center text-center space-y-3">
-           <Link href="/" className="group">
-              <div className="h-11 w-11 bg-zinc-950 border border-zinc-800 rounded-xl flex items-center justify-center text-white shadow-sm transition-all duration-300 hover:bg-zinc-900">
-                <FileSpreadsheet className="h-5 w-5" />
-              </div>
-           </Link>
-           <div className="space-y-0.5">
-              <h1 className="text-lg font-semibold tracking-tight text-zinc-900 font-sans">SheetFlow Control</h1>
-              <p className="text-zinc-400 text-[10px] font-medium uppercase tracking-wider">
-                 Secure Access Terminal
-              </p>
+        <div className="flex items-center justify-center gap-2.5 mb-2">
+           <div className="h-8 w-8 bg-zinc-950 dark:bg-zinc-50 border border-zinc-800 dark:border-zinc-200 rounded-lg flex items-center justify-center text-white dark:text-zinc-950 shadow-sm">
+             <FileSpreadsheet className="h-4 w-4" />
            </div>
+           <span className="font-semibold text-lg tracking-tight text-zinc-900 dark:text-zinc-50 font-sans">SheetFlow</span>
         </div>
 
         {/* Identity Card Container */}
-        <Card className="border border-zinc-200/80 shadow-[0_4px_12px_rgba(0,0,0,0.02)] rounded-xl overflow-hidden bg-white">
+        <Card className="border border-zinc-200/80 dark:border-zinc-800/80 shadow-[0_8px_30px_rgba(0,0,0,0.015)] rounded-xl overflow-hidden bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md">
           <CardHeader className="space-y-1.5 pt-6 text-center px-6">
-            <CardTitle className="text-base font-semibold tracking-tight text-zinc-900">Identity Verification</CardTitle>
-            <CardDescription className="text-xs font-normal text-zinc-400">
-              Access automated endpoint data streams
+            <CardTitle className="text-base font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">Welcome back</CardTitle>
+            <CardDescription className="text-xs font-normal text-zinc-400 dark:text-zinc-500">
+               Sign in to manage your spreadsheet automations
             </CardDescription>
           </CardHeader>
           <CardContent className="px-6 pb-6 pt-2">
             <Tabs defaultValue="login" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-6 rounded-lg p-1 h-9 bg-zinc-100 border border-zinc-200/40">
-                <TabsTrigger value="login" className="rounded-md text-[11px] font-medium text-zinc-500 tracking-tight data-[state=active]:shadow-sm data-[state=active]:bg-white data-[state=active]:text-zinc-900 transition-all cursor-pointer">Sign In</TabsTrigger>
-                <TabsTrigger value="register" className="rounded-md text-[11px] font-medium text-zinc-500 tracking-tight data-[state=active]:shadow-sm data-[state=active]:bg-white data-[state=active]:text-zinc-900 transition-all cursor-pointer">Register</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-2 mb-6 rounded-lg p-1 h-9 bg-zinc-100 dark:bg-zinc-950 border border-zinc-200/40 dark:border-zinc-800/40">
+                <TabsTrigger value="login" className="rounded-md text-[11px] font-medium text-zinc-500 dark:text-zinc-400 tracking-tight data-[state=active]:shadow-sm data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-800 data-[state=active]:text-zinc-900 dark:data-[state=active]:text-zinc-50 transition-all cursor-pointer">Sign In</TabsTrigger>
+                <TabsTrigger value="register" className="rounded-md text-[11px] font-medium text-zinc-500 dark:text-zinc-400 tracking-tight data-[state=active]:shadow-sm data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-800 data-[state=active]:text-zinc-900 dark:data-[state=active]:text-zinc-50 transition-all cursor-pointer">Register</TabsTrigger>
               </TabsList>
 
               <TabsContent value="login" className="focus-visible:outline-none">
@@ -117,7 +107,7 @@ export default function LoginPage() {
                     <div className="grid gap-1.5">
                       <Label htmlFor="email" className="font-medium text-[10px] uppercase tracking-wider text-zinc-400 ml-0.5">Account Email</Label>
                       <div className="relative group">
-                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-zinc-400 transition-colors opacity-60 group-focus-within:text-zinc-900" />
+                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-zinc-400 transition-colors opacity-60 group-focus-within:text-zinc-900 dark:group-focus-within:text-zinc-50" />
                         <Input
                           id="email"
                           type="email"
@@ -125,17 +115,17 @@ export default function LoginPage() {
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           required
-                          className="pl-9 h-10 rounded-lg border-zinc-200 focus-visible:ring-zinc-950 focus:border-zinc-950 transition-all bg-zinc-50 text-xs shadow-none text-zinc-800"
+                          className="pl-9 h-10 rounded-lg border-zinc-200 dark:border-zinc-800 focus-visible:ring-zinc-950 dark:focus-visible:ring-zinc-50 focus:border-zinc-950 dark:focus:border-zinc-50 transition-all bg-zinc-50 dark:bg-zinc-900/40 text-xs shadow-none text-zinc-800 dark:text-zinc-100"
                         />
                       </div>
                     </div>
                     <div className="grid gap-1.5">
                       <div className="flex items-center justify-between ml-0.5">
                         <Label htmlFor="password" className="font-medium text-[10px] uppercase tracking-wider text-zinc-400">Security Key</Label>
-                        <Link href="#" className="text-[10px] font-medium text-zinc-400 hover:text-zinc-900 hover:underline">Forgot?</Link>
+                        <Link href="#" className="text-[10px] font-medium text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 hover:underline">Forgot?</Link>
                       </div>
                       <div className="relative group">
-                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-zinc-400 transition-colors opacity-60 group-focus-within:text-zinc-900" />
+                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-zinc-400 transition-colors opacity-60 group-focus-within:text-zinc-900 dark:group-focus-within:text-zinc-50" />
                         <Input
                           id="password"
                           type="password"
@@ -143,14 +133,14 @@ export default function LoginPage() {
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           required
-                          className="pl-9 h-10 rounded-lg border-zinc-200 focus-visible:ring-zinc-950 focus:border-zinc-950 transition-all bg-zinc-50 text-xs shadow-none text-zinc-800"
+                          className="pl-9 h-10 rounded-lg border-zinc-200 dark:border-zinc-800 focus-visible:ring-zinc-950 dark:focus-visible:ring-zinc-50 focus:border-zinc-950 dark:focus:border-zinc-50 transition-all bg-zinc-50 dark:bg-zinc-900/40 text-xs shadow-none text-zinc-800 dark:text-zinc-100"
                         />
                       </div>
                     </div>
                   </div>
-                  <Button className="w-full h-10 bg-zinc-950 hover:bg-zinc-850 text-white rounded-lg gap-2 shadow-sm font-medium text-xs tracking-tight transition-all mt-2 cursor-pointer h-10" type="submit" disabled={isPending}>
+                  <Button className="w-full h-10 bg-zinc-950 hover:bg-zinc-800 dark:bg-zinc-50 dark:hover:bg-zinc-200 text-white dark:text-zinc-950 rounded-lg gap-2 shadow-sm font-medium text-xs tracking-tight transition-all mt-2 cursor-pointer" type="submit" disabled={isPending}>
                     {isPending ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <LogIn className="h-3.5 w-3.5" />}
-                    Enter Pipeline
+                    Sign In
                   </Button>
                 </form>
               </TabsContent>
@@ -161,7 +151,7 @@ export default function LoginPage() {
                     <div className="grid gap-1.5">
                       <Label htmlFor="reg-name" className="font-medium text-[10px] uppercase tracking-wider text-zinc-400 ml-0.5">Full Name</Label>
                       <div className="relative group">
-                        <User className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-zinc-400 transition-colors opacity-60 group-focus-within:text-zinc-900" />
+                        <User className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-zinc-400 transition-colors opacity-60 group-focus-within:text-zinc-900 dark:group-focus-within:text-zinc-50" />
                         <Input
                           id="reg-name"
                           type="text"
@@ -169,14 +159,14 @@ export default function LoginPage() {
                           value={fullName}
                           onChange={(e) => setFullName(e.target.value)}
                           required
-                          className="pl-9 h-10 rounded-lg border-zinc-200 focus-visible:ring-zinc-950 focus:border-zinc-950 transition-all bg-zinc-50 text-xs shadow-none text-zinc-800"
+                          className="pl-9 h-10 rounded-lg border-zinc-200 dark:border-zinc-800 focus-visible:ring-zinc-950 dark:focus-visible:ring-zinc-50 focus:border-zinc-950 dark:focus:border-zinc-50 transition-all bg-zinc-50 dark:bg-zinc-900/40 text-xs shadow-none text-zinc-800 dark:text-zinc-100"
                         />
                       </div>
                     </div>
                     <div className="grid gap-1.5">
                       <Label htmlFor="reg-email" className="font-medium text-[10px] uppercase tracking-wider text-zinc-400 ml-0.5">Work Email</Label>
                       <div className="relative group">
-                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-zinc-400 transition-colors opacity-60 group-focus-within:text-zinc-900" />
+                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-zinc-400 transition-colors opacity-60 group-focus-within:text-zinc-900 dark:group-focus-within:text-zinc-50" />
                         <Input
                           id="reg-email"
                           type="email"
@@ -184,7 +174,7 @@ export default function LoginPage() {
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           required
-                          className="pl-9 h-10 rounded-lg border-zinc-200 focus-visible:ring-zinc-950 focus:border-zinc-950 transition-all bg-zinc-50 text-xs shadow-none text-zinc-800"
+                          className="pl-9 h-10 rounded-lg border-zinc-200 dark:border-zinc-800 focus-visible:ring-zinc-950 dark:focus-visible:ring-zinc-50 focus:border-zinc-950 dark:focus:border-zinc-50 transition-all bg-zinc-50 dark:bg-zinc-900/40 text-xs shadow-none text-zinc-800 dark:text-zinc-100"
                         />
                       </div>
                     </div>
@@ -194,14 +184,14 @@ export default function LoginPage() {
                         <button
                           type="button"
                           onClick={suggestPassword}
-                          className="text-[10px] font-medium text-zinc-400 hover:text-zinc-900 hover:underline flex items-center gap-1 cursor-pointer"
+                          className="text-[10px] font-medium text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 hover:underline flex items-center gap-1 cursor-pointer"
                         >
                           <Sparkles className="h-2.5 w-2.5" />
                           Suggest
                         </button>
                       </div>
                       <div className="relative group">
-                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-zinc-400 transition-colors opacity-60 group-focus-within:text-zinc-900" />
+                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-zinc-400 transition-colors opacity-60 group-focus-within:text-zinc-900 dark:group-focus-within:text-zinc-50" />
                         <Input
                           id="reg-password"
                           type="password"
@@ -209,14 +199,14 @@ export default function LoginPage() {
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           required
-                          className="pl-9 h-10 rounded-lg border-zinc-200 focus-visible:ring-zinc-950 focus:border-zinc-950 transition-all bg-zinc-50 text-xs shadow-none text-zinc-800"
+                          className="pl-9 h-10 rounded-lg border-zinc-200 dark:border-zinc-800 focus-visible:ring-zinc-950 dark:focus-visible:ring-zinc-50 focus:border-zinc-950 dark:focus:border-zinc-50 transition-all bg-zinc-50 dark:bg-zinc-900/40 text-xs shadow-none text-zinc-800 dark:text-zinc-100"
                         />
                       </div>
                     </div>
                   </div>
-                  <Button className="w-full h-10 bg-zinc-950 hover:bg-zinc-850 text-white rounded-lg gap-2 shadow-sm font-medium text-xs tracking-tight transition-all mt-3 cursor-pointer h-10" type="submit" disabled={isPending}>
+                  <Button className="w-full h-10 bg-zinc-950 hover:bg-zinc-800 dark:bg-zinc-50 dark:hover:bg-zinc-200 text-white dark:text-zinc-950 rounded-lg gap-2 shadow-sm font-medium text-xs tracking-tight transition-all mt-3 cursor-pointer" type="submit" disabled={isPending}>
                     {isPending ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <UserPlus className="h-3.5 w-3.5" />}
-                    Deploy Account
+                    Create Account
                   </Button>
                 </form>
               </TabsContent>
@@ -227,12 +217,12 @@ export default function LoginPage() {
         {/* Verification Status Badges */}
         <div className="flex items-center justify-center gap-6 opacity-35 hover:opacity-75 transition-opacity duration-300">
            <div className="flex items-center gap-1">
-              <ShieldCheck className="h-3.5 w-3.5 text-zinc-800" />
-              <span className="text-[9px] font-medium uppercase tracking-wider text-zinc-650">Encrypted</span>
+              <ShieldCheck className="h-3.5 w-3.5 text-zinc-800 dark:text-zinc-200" />
+              <span className="text-[9px] font-medium uppercase tracking-wider text-zinc-600 dark:text-zinc-400">Encrypted</span>
            </div>
            <div className="flex items-center gap-1">
-              <Zap className="h-3.5 w-3.5 text-zinc-800" />
-              <span className="text-[9px] font-medium uppercase tracking-wider text-zinc-650">Realtime</span>
+              <Zap className="h-3.5 w-3.5 text-zinc-800 dark:text-zinc-200" />
+              <span className="text-[9px] font-medium uppercase tracking-wider text-zinc-600 dark:text-zinc-400">Realtime</span>
            </div>
         </div>
       </div>

@@ -24,7 +24,7 @@ export function SignOutButton() {
     <Button 
       variant="outline" 
       size="sm" 
-      className="rounded-md px-3 text-xs font-medium border-zinc-200 text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 cursor-pointer h-8"
+      className="rounded-md px-3 text-xs font-medium border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 bg-transparent hover:bg-zinc-50 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-zinc-50 cursor-pointer h-8"
       onClick={handleSignOut}
     >
       Sign Out
