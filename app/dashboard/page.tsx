@@ -1,7 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma";
 import { Button } from "@/components/ui/button";
-import { Plus, Settings2, CheckCircle2, XCircle, MoreVertical, LayoutGrid, Zap, ArrowRight, Activity, Globe, Database, Clock } from "lucide-react";
+import { Plus, CheckCircle2, XCircle, MoreVertical, LayoutGrid, Zap, ArrowRight, Activity, Globe, Database, Clock } from "lucide-react";
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -25,117 +25,120 @@ export default async function DashboardPage() {
   });
 
   return (
-    <div className="bg-[#f6f6f7] min-h-[calc(100vh-64px)] pb-24">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 space-y-10">
+    <div className="bg-[#fafafa] min-h-[calc(100vh-56px)] pb-20 dot-grid relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-[#fafafa] pointer-events-none z-0" />
+      
+      <div className="max-w-6xl mx-auto px-4 md:px-8 py-8 space-y-8 relative z-10">
         
-        {/* Polaris Style Page Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-zinc-200 pb-8">
-          <div className="space-y-1.5">
-            <h1 className="text-3xl font-black tracking-tighter text-[#202223] uppercase italic">Dashboard</h1>
-            <p className="text-[#6d7175] text-sm font-medium">
-              Manage your automated data flows to Google Sheets.
+        {/* Modern Swiss Style Page Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-200/80 pb-6">
+          <div className="space-y-0.5">
+            <h1 className="text-xl font-semibold tracking-tight text-zinc-900 font-sans">Pipelines</h1>
+            <p className="text-zinc-400 text-xs font-normal">
+              Manage secure automation flows converting API payloads into sheets.
             </p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
              <Link href="/dashboard/new">
-                <Button className="bg-[#008060] hover:bg-[#006e52] text-white rounded-lg h-10 px-5 gap-2 shadow-sm font-black text-xs uppercase tracking-widest transition-all">
+                <Button className="bg-zinc-950 hover:bg-zinc-800 text-white rounded-lg h-9 px-4 gap-1.5 shadow-sm font-medium text-xs tracking-tight transition-all cursor-pointer">
                   <Plus className="h-4 w-4" />
-                  Create New Flow
+                  New Pipeline
                 </Button>
              </Link>
           </div>
         </div>
 
         {endpoints.length === 0 ? (
-          <Card className="flex flex-col items-center justify-center py-24 text-center border-[#e1e3e5] rounded-lg bg-white shadow-xs">
-            <div className="h-16 w-16 bg-[#f1f2f3] rounded-2xl flex items-center justify-center mb-6">
-               <Database className="h-8 w-8 text-[#6d7175]" />
+          <Card className="flex flex-col items-center justify-center py-20 text-center border-zinc-200/80 rounded-xl bg-white shadow-[0_1px_3px_rgba(0,0,0,0.01)] relative overflow-hidden">
+            <div className="absolute inset-0 dot-grid opacity-30 pointer-events-none" />
+            <div className="h-12 w-12 bg-zinc-50 border border-zinc-200/60 rounded-xl flex items-center justify-center mb-5 text-zinc-400 relative z-10">
+               <Database className="h-5 w-5" />
             </div>
-            <CardTitle className="text-xl font-black text-[#202223] uppercase italic tracking-tight">Ready to start?</CardTitle>
-            <CardDescription className="mt-2 text-sm max-w-sm px-6 text-[#6d7175] font-medium leading-relaxed">
-              Create your first automation to capture JSON data and push it directly into Google Sheets.
+            <CardTitle className="text-sm font-semibold text-zinc-900 tracking-tight relative z-10">Deploy your first pipeline</CardTitle>
+            <CardDescription className="mt-1.5 text-xs max-w-xs px-4 text-zinc-450 font-normal leading-relaxed relative z-10">
+              Build a secure endpoint to validate raw JSON payloads and append rows directly to Google Sheets.
             </CardDescription>
-            <Link href="/dashboard/new" className="mt-8">
-              <Button size="lg" className="bg-[#008060] hover:bg-[#006e52] text-white rounded-lg h-11 px-8 gap-2 font-black text-xs uppercase tracking-widest">
+            <Link href="/dashboard/new" className="mt-6 relative z-10">
+              <Button size="lg" className="bg-zinc-950 hover:bg-zinc-850 text-white rounded-lg h-9 px-5 gap-1.5 font-medium text-xs tracking-tight shadow-sm cursor-pointer">
                 <Plus className="h-4 w-4" />
-                Build First Flow
+                Build Endpoint
               </Button>
             </Link>
           </Card>
         ) : (
-          <div className="space-y-6">
-            <div className="flex items-center justify-between px-1">
-               <h2 className="font-black text-[10px] uppercase tracking-[0.2em] text-[#6d7175] flex items-center gap-2">
-                  <Activity className="h-3.5 w-3.5 text-[#008060]" />
-                  Active Data Flows
+          <div className="space-y-4">
+            <div className="flex items-center justify-between px-0.5">
+               <h2 className="font-semibold text-xs tracking-tight text-zinc-500 flex items-center gap-2">
+                  <Activity className="h-4 w-4 text-zinc-400" />
+                  Active Automations
                </h2>
-               <Badge variant="outline" className="bg-white border-[#e1e3e5] text-[#202223] text-[9px] font-black px-2.5 py-0.5 rounded-full">
+               <span className="text-[10px] font-medium px-2 py-0.5 border border-zinc-200 text-zinc-500 bg-zinc-50 rounded-md">
                   {endpoints.length} Total
-               </Badge>
+               </span>
             </div>
             
-            <Card className="border-[#e1e3e5] rounded-lg shadow-xs overflow-hidden bg-white">
+            <Card className="border-zinc-200/80 rounded-xl shadow-[0_1px_4px_rgba(0,0,0,0.015)] overflow-hidden bg-white">
               <div className="overflow-x-auto">
                 <Table>
-                  <TableHeader className="bg-[#fafafa]">
-                    <TableRow className="hover:bg-transparent border-b border-[#e1e3e5]">
-                      <TableHead className="py-4 pl-6 text-[10px] font-black uppercase tracking-widest text-[#6d7175]">Flow Name</TableHead>
-                      <TableHead className="py-4 text-[10px] font-black uppercase tracking-widest text-[#6d7175]">Status</TableHead>
-                      <TableHead className="py-4 text-[10px] font-black uppercase tracking-widest text-[#6d7175]">Field Count</TableHead>
-                      <TableHead className="py-4 text-[10px] font-black uppercase tracking-widest text-[#6d7175]">Created</TableHead>
-                      <TableHead className="py-4 text-right pr-6 text-[10px] font-black uppercase tracking-widest text-[#6d7175]">Action</TableHead>
+                  <TableHeader className="bg-zinc-50/50 border-b border-zinc-200/60">
+                    <TableRow className="hover:bg-transparent border-0">
+                      <TableHead className="py-3 pl-5 text-[10px] font-semibold uppercase tracking-wider text-zinc-400">Pipeline Details</TableHead>
+                      <TableHead className="py-3 text-[10px] font-semibold uppercase tracking-wider text-zinc-400">Status</TableHead>
+                      <TableHead className="py-3 text-[10px] font-semibold uppercase tracking-wider text-zinc-400">Columns Mapping</TableHead>
+                      <TableHead className="py-3 text-[10px] font-semibold uppercase tracking-wider text-zinc-400">Created</TableHead>
+                      <TableHead className="py-3 text-right pr-5 text-[10px] font-semibold uppercase tracking-wider text-zinc-400">Configuration</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {endpoints.map((endpoint: Endpoint) => (
-                      <TableRow key={endpoint.id} className="group hover:bg-[#f9fafb] transition-colors border-b border-[#f1f2f3] last:border-0">
-                        <TableCell className="py-5 pl-6">
-                          <div className="flex items-center gap-4">
-                             <div className="h-10 w-10 rounded-lg bg-[#f1f2f3] border border-[#e1e3e5] flex items-center justify-center text-[#6d7175] group-hover:bg-[#008060] group-hover:text-white group-hover:border-[#008060] transition-all shadow-xs">
-                                <Globe className="h-5 w-5" />
+                      <TableRow key={endpoint.id} className="group hover:bg-zinc-50/30 transition-all border-b border-zinc-100 last:border-0">
+                        <TableCell className="py-4 pl-5">
+                          <div className="flex items-center gap-3.5">
+                             <div className="h-8 w-8 rounded-lg bg-zinc-50 border border-zinc-200/65 flex items-center justify-center text-zinc-400 group-hover:bg-zinc-950 group-hover:text-white group-hover:border-zinc-950 transition-all shadow-[0_1px_2px_rgba(0,0,0,0.01)]">
+                                <Globe className="h-4 w-4" />
                              </div>
                              <div className="flex flex-col gap-0.5">
-                               <span className="font-bold text-sm tracking-tight text-[#202223]">{endpoint.name}</span>
-                               <span className="text-[10px] font-mono text-[#6d7175] opacity-60">ID: {endpoint.id.split('-')[0]}...</span>
+                               <span className="font-semibold text-xs tracking-tight text-zinc-800">{endpoint.name}</span>
+                               <span className="text-[10px] font-mono text-zinc-400">ID: {endpoint.id.slice(0, 8)}</span>
                              </div>
                           </div>
                         </TableCell>
-                        <TableCell className="py-5">
+                        <TableCell className="py-4">
                           {endpoint.isActive ? (
-                            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#e3f1df] border border-[#bbe5b3] text-[#008060] text-[9px] font-black uppercase tracking-tight">
-                              <span className="h-1.5 w-1.5 rounded-full bg-[#008060] animate-pulse"></span>
+                            <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-50 border border-emerald-200/60 text-emerald-700 text-[10px] font-medium tracking-tight">
+                              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                               Active
                             </div>
                           ) : (
-                            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#f1f2f3] border border-[#e1e3e5] text-[#6d7175] text-[9px] font-black uppercase tracking-tight">
-                              <span className="h-1.5 w-1.5 rounded-full bg-[#6d7175]"></span>
+                            <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-zinc-50 border border-zinc-200 text-zinc-500 text-[10px] font-medium tracking-tight">
+                              <span className="h-1.5 w-1.5 rounded-full bg-zinc-400"></span>
                               Paused
                             </div>
                           )}
                         </TableCell>
-                        <TableCell className="py-5">
-                          <div className="flex items-center gap-2.5">
+                        <TableCell className="py-4">
+                          <div className="flex items-center gap-2">
                              <div className="flex -space-x-1.5">
-                               {(endpoint.schema as any[]).slice(0, 3).map((_, i) => (
-                                 <div key={i} className="h-7 w-7 rounded-md border border-[#e1e3e5] bg-white flex items-center justify-center text-[10px] font-black text-[#6d7175] shadow-xs ring-2 ring-white" title={(endpoint.schema as any[])[i].name}>
-                                   {(endpoint.schema as any[])[i].name[0].toUpperCase()}
+                               {(endpoint.schema as any[]).slice(0, 3).map((field, i) => (
+                                 <div key={i} className="h-6 w-6 rounded-md border border-zinc-200 bg-white flex items-center justify-center text-[9px] font-mono text-zinc-500 shadow-xs ring-2 ring-white" title={field.name}>
+                                   {field.name[0].toLowerCase()}
                                  </div>
                                ))}
                              </div>
                              {(endpoint.schema as any[]).length > 3 && (
-                                <span className="text-[10px] font-bold text-[#6d7175]">+{(endpoint.schema as any[]).length - 3} more</span>
+                                <span className="text-[10px] font-mono text-zinc-400">+{(endpoint.schema as any[]).length - 3}</span>
                              )}
                           </div>
                         </TableCell>
-                        <TableCell className="text-[#6d7175] text-[11px] font-semibold py-5">
-                          <div className="flex items-center gap-2">
-                             <Clock className="h-3.5 w-3.5 opacity-40" />
+                        <TableCell className="text-zinc-500 text-xs font-normal py-4">
+                          <div className="flex items-center gap-1.5 text-zinc-450 font-sans">
+                             <Clock className="h-3.5 w-3.5 opacity-60 text-zinc-400" />
                              {new Date(endpoint.createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
                           </div>
                         </TableCell>
-                        <TableCell className="text-right py-5 pr-6">
+                        <TableCell className="text-right py-4 pr-5">
                           <Link href={`/dashboard/endpoint/${endpoint.id}`}>
-                            <Button variant="outline" size="sm" className="bg-white border-[#e1e3e5] text-[#202223] rounded-lg h-9 gap-2 px-5 font-black text-[10px] uppercase tracking-widest transition-all hover:bg-[#f6f6f7] hover:border-[#c9cccf] shadow-xs">
+                            <Button variant="outline" size="sm" className="bg-white border-zinc-200 text-zinc-700 rounded-lg h-8 gap-1.5 px-3.5 font-medium text-xs transition-all hover:bg-zinc-50 hover:border-zinc-300 shadow-sm cursor-pointer">
                               Manage Flow
                             </Button>
                           </Link>

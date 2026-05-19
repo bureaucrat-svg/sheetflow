@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, FileSpreadsheet, ShieldCheck, Zap, Globe, MousePointer2, Send, Database, Shield, Fingerprint, Search, Code, CheckCircle2 } from "lucide-react";
+import { ArrowRight, FileSpreadsheet, ShieldCheck, Zap, Globe, MousePointer2, Send, Database, Shield, Search, Fingerprint, Code, CheckCircle2, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const metadata = {
-  title: "SheetFlow | Simple Data Entry for Google Sheets",
-  description: "The easiest way to automatically send information from your apps to Google Sheets. No more manual entry, just clean data.",
+  title: "SheetFlow | Developer Automation for Google Sheets",
+  description: "Capture JSON payloads via simple API webhooks and stream them seamlessly into Google Sheets. Built for developers, creators, and modern startups.",
 };
 
 const GithubIcon = ({ className }: { className?: string }) => (
@@ -24,59 +24,64 @@ const GithubIcon = ({ className }: { className?: string }) => (
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center bg-[#f6f6f7] min-h-screen">
+    <div className="relative min-h-screen bg-[#fafafa] overflow-hidden dot-grid">
+      {/* Absolute Decorative Top Fade Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-[#fafafa] pointer-events-none z-0" />
+      
       {/* Hero Section */}
-      <section className="w-full pt-24 pb-32 overflow-hidden relative border-b border-[#e1e3e5] bg-white">
-        <div className="container mx-auto px-4 md:px-8 flex flex-col items-center text-center space-y-10">
-          <div className="flex flex-wrap justify-center gap-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e3f1df] border border-[#bbe5b3] text-[#008060] text-[10px] font-black uppercase tracking-widest">
-               <ShieldCheck className="h-3.5 w-3.5" />
-              <span>Production Ready</span>
+      <section className="w-full pt-20 pb-28 relative z-10">
+        <div className="max-w-6xl mx-auto px-4 md:px-8 flex flex-col items-center text-center space-y-8">
+          
+          {/* Badge Indicators */}
+          <div className="flex items-center justify-center gap-3 animate-fade-in">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-zinc-200 text-zinc-700 text-[10px] font-medium tracking-tight shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+               <span>Infrastructure Active</span>
             </div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f1f2f3] border border-[#e1e3e5] text-[#6d7175] text-[10px] font-black uppercase tracking-widest">
-               <GithubIcon className="h-3.5 w-3.5" />
-              <span>Open Infrastructure</span>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-zinc-200 text-zinc-700 text-[10px] font-medium tracking-tight shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+               <GithubIcon className="h-3 w-3 text-zinc-400" />
+               <span>MIT License</span>
             </div>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-black tracking-tighter max-w-5xl leading-none text-[#202223] uppercase italic">
-            Automate your <span className="text-[#008060]">Data Entry</span> into Sheets
+          <h1 className="text-4xl sm:text-6xl md:text-[68px] font-semibold tracking-tight max-w-4xl leading-[1.08] text-zinc-900 font-sans">
+            Automate JSON data streams directly into Google Sheets
           </h1>
           
-          <p className="text-xl text-[#6d7175] max-w-3xl leading-relaxed font-medium">
-            Connect your apps to Google Sheets in minutes. No more manual data entry or messy spreadsheets—just clean, automated data whenever you need it.
+          <p className="text-base sm:text-lg text-zinc-500 max-w-2xl leading-relaxed font-normal">
+            A developer-first micro-service that accepts raw JSON payloads through secured webhook endpoints and appends verified rows into spreadsheets. No setup friction.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-5 pt-4">
-            <Link href="/login">
-              <Button size="lg" className="h-14 px-10 text-xs rounded-lg shadow-sm bg-[#008060] hover:bg-[#006e52] text-white transition-all gap-3 font-black uppercase tracking-widest cursor-pointer">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-4 w-full sm:w-auto">
+            <Link href="/login" className="w-full sm:w-auto">
+              <Button size="lg" className="h-11 px-6 rounded-lg bg-zinc-950 hover:bg-zinc-800 text-white transition-all gap-2 text-xs font-medium cursor-pointer shadow-sm w-full">
                 Get Started Free
-                <ArrowRight className="h-4 w-4" />
+                <ChevronRight className="h-4 w-4 opacity-75" />
               </Button>
             </Link>
-            <Link href="https://github.com/bureaucrat-svg/sheetflow" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" variant="outline" className="h-14 px-10 text-xs rounded-lg cursor-pointer gap-3 w-full font-black uppercase tracking-widest border-[#e1e3e5] bg-white hover:bg-[#f6f6f7] text-[#202223]">
-                <GithubIcon className="h-4 w-4" />
+            <Link href="https://github.com/bureaucrat-svg/sheetflow" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+              <Button size="lg" variant="outline" className="h-11 px-6 rounded-lg cursor-pointer gap-2 w-full text-xs font-medium border-zinc-200 bg-white hover:bg-zinc-50 hover:border-zinc-300 text-zinc-800 transition-all">
+                <GithubIcon className="h-3.5 w-3.5 text-zinc-500" />
                 View on GitHub
               </Button>
             </Link>
           </div>
 
-          {/* Visualization Section */}
-          <div className="pt-24 w-full max-w-6xl">
-             <div className="grid md:grid-cols-3 gap-8 text-left">
+          {/* Value Cards - Technical Clean Grids */}
+          <div className="pt-24 w-full">
+             <div className="grid md:grid-cols-3 gap-6 text-left">
                 {[
-                  { icon: MousePointer2, title: "Choose Your Columns", desc: "Select exactly which information you want to save in your spreadsheet.", color: "bg-[#008060]/10 text-[#008060]" },
-                  { icon: ShieldCheck, title: "Clean & Accurate", desc: "We check every piece of data to make sure it fits perfectly into your sheet.", color: "bg-[#008060]/10 text-[#008060]" },
-                  { icon: Database, title: "Real-Time Sync", desc: "New information shows up in your Google Sheet the moment it happens.", color: "bg-[#008060]/10 text-[#008060]" }
+                  { icon: MousePointer2, title: "Custom Schema Control", desc: "Define fields, validate data types, and map columns precisely to structural parameters." },
+                  { icon: ShieldCheck, title: "Zero Latency Queuing", desc: "Payloads are captured instantly, validated against strict filters, and routed safely." },
+                  { icon: Database, title: "Google Sheets Sync", desc: "Data appends automatically inside Google Spreadsheets in real-time as rows are created." }
                 ].map((step, i) => (
-                  <div key={i} className="flex flex-col space-y-5 p-8 rounded-xl bg-[#f9fafb] border border-[#e1e3e5] hover:border-[#008060] transition-all group">
-                    <div className={cn("h-12 w-12 rounded-lg flex items-center justify-center shadow-inner", step.color)}>
-                      <step.icon className="h-6 w-6" />
+                  <div key={i} className="flex flex-col space-y-4 p-6 rounded-xl bg-white border border-zinc-200/80 hover:border-zinc-300 transition-all duration-300 shadow-[0_1px_3px_rgba(0,0,0,0.02)] group relative overflow-hidden">
+                    <div className="h-10 w-10 rounded-lg flex items-center justify-center border border-zinc-200/60 bg-zinc-50 text-zinc-800">
+                      <step.icon className="h-5 w-5" />
                     </div>
-                    <div className="space-y-2">
-                       <h4 className="font-black text-xs uppercase tracking-widest text-[#202223] italic">{step.title}</h4>
-                       <p className="text-sm text-[#6d7175] leading-relaxed font-medium">{step.desc}</p>
+                    <div className="space-y-1.5">
+                       <h4 className="font-medium text-sm text-zinc-900 tracking-tight">{step.title}</h4>
+                       <p className="text-xs text-zinc-500 leading-relaxed font-normal">{step.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -85,23 +90,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Logic Visualization */}
-      <section className="w-full py-24 bg-[#f6f6f7]">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="text-center space-y-4 mb-16">
-             <h2 className="text-4xl font-black tracking-tighter text-[#202223] uppercase italic">How It Works</h2>
-             <p className="text-[#6d7175] text-lg max-w-2xl mx-auto font-medium">We take data from your app, check it for accuracy, and put it right where it belongs.</p>
+      {/* Interactive Architecture Visualization */}
+      <section className="w-full py-20 border-t border-zinc-200/80 bg-white relative z-10">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
+          <div className="text-center space-y-3 mb-16">
+             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-zinc-900 font-sans">Sleek Pipeline Architecture</h2>
+             <p className="text-zinc-500 text-sm max-w-xl mx-auto font-normal">We receive inbound JSON payloads, validate fields, and execute App Scripts.</p>
           </div>
 
-          <div className="grid lg:grid-cols-12 gap-8 items-center max-w-6xl mx-auto">
-             {/* Left: Input */}
-             <div className="lg:col-span-5 space-y-0">
-                <div className="flex items-center gap-3 px-4 py-3 rounded-t-lg bg-[#202223] text-white text-[10px] font-black tracking-widest uppercase">
-                   <Send className="h-4 w-4 opacity-60" />
-                   <span>Data from Your App</span>
+          <div className="grid lg:grid-cols-12 gap-8 items-stretch max-w-5xl mx-auto">
+             {/* Left: Input Payload Codeblock */}
+             <div className="lg:col-span-5 flex flex-col">
+                <div className="flex items-center gap-2 px-4 py-2.5 rounded-t-lg bg-zinc-950 border-b border-zinc-800 text-zinc-300 text-[10px] font-mono">
+                   <div className="flex gap-1.5">
+                     <span className="w-2.5 h-2.5 rounded-full bg-zinc-800" />
+                     <span className="w-2.5 h-2.5 rounded-full bg-zinc-800" />
+                     <span className="w-2.5 h-2.5 rounded-full bg-zinc-800" />
+                   </div>
+                   <span className="ml-4 opacity-60">request.json</span>
                 </div>
-                <div className="p-8 bg-[#0b0c0d] rounded-b-lg shadow-xl border border-[#1a1c1d] font-mono text-xs text-[#aeb4b9] leading-relaxed">
-                   <pre><code>{`{
+                <div className="p-6 bg-zinc-900 rounded-b-lg border border-zinc-800 flex-1 font-mono text-[11px] text-zinc-400 leading-relaxed shadow-inner">
+                   <pre className="overflow-x-auto"><code>{`{
   "customer": "Sarah Connor",
   "email": "sarah@skynet.com",
   "tier": "enterprise",
@@ -110,44 +119,51 @@ export default function Home() {
                 </div>
              </div>
 
-             {/* Middle: Controls */}
-             <div className="lg:col-span-2 flex flex-col items-center justify-center gap-6 py-10 lg:py-0">
-                {[Shield, Search, Fingerprint].map((Icon, i) => (
-                  <div key={i} className="h-12 w-12 rounded-xl bg-white border border-[#e1e3e5] flex items-center justify-center text-[#008060] shadow-xs">
-                    <Icon className="h-6 w-6" />
+             {/* Middle: Middleware pipeline processes */}
+             <div className="lg:col-span-2 flex lg:flex-col items-center justify-center gap-4 py-6 lg:py-0">
+                {[
+                  { Icon: Shield, label: "Verify" },
+                  { Icon: Search, label: "Parse" },
+                  { Icon: Fingerprint, label: "Stream" }
+                ].map(({ Icon, label }, i) => (
+                  <div key={i} className="flex flex-col items-center gap-1.5">
+                    <div className="h-10 w-10 rounded-full bg-zinc-50 border border-zinc-200 flex items-center justify-center text-zinc-700 shadow-sm transition-all hover:bg-zinc-100">
+                      <Icon className="h-4.5 w-4.5" />
+                    </div>
+                    <span className="text-[9px] font-medium text-zinc-400 tracking-tight">{label}</span>
                   </div>
                 ))}
              </div>
 
-             {/* Right: Output */}
-             <div className="lg:col-span-5 space-y-0">
-                <div className="flex items-center gap-3 px-4 py-3 rounded-t-lg bg-[#008060] text-white text-[10px] font-black tracking-widest uppercase">
-                   <FileSpreadsheet className="h-4 w-4 opacity-60" />
-                   <span>Your Google Sheet</span>
+             {/* Right: Spreadsheets Spreadsheet visual */}
+             <div className="lg:col-span-5 flex flex-col">
+                <div className="flex items-center gap-2 px-4 py-2.5 rounded-t-lg bg-zinc-50 border-b border-zinc-200 text-zinc-600 text-[10px] font-medium">
+                   <FileSpreadsheet className="h-3.5 w-3.5 text-zinc-500" />
+                   <span className="text-zinc-600">Google Sheet Database</span>
                 </div>
-                <div className="bg-white rounded-b-lg shadow-xl border border-[#e1e3e5] overflow-hidden">
+                <div className="bg-white rounded-b-lg border border-zinc-200 overflow-hidden flex-1 shadow-sm">
                    <div className="overflow-x-auto">
-                      <table className="w-full text-[10px] min-w-[400px]">
-                         <thead className="bg-[#fafafa] border-b border-[#e1e3e5]">
+                      <table className="w-full text-[10px] min-w-[320px]">
+                         <thead className="bg-zinc-50 border-b border-zinc-200">
                             <tr>
-                               <th className="p-4 text-left font-black uppercase tracking-widest text-[#6d7175]">Customer Name</th>
-                               <th className="p-4 text-left font-black uppercase tracking-widest text-[#6d7175]">Email</th>
-                               <th className="p-4 text-left font-black uppercase tracking-widest text-[#6d7175]">Status</th>
+                               <th className="py-2.5 px-4 text-left font-semibold text-zinc-500 tracking-tight">Customer Name</th>
+                               <th className="py-2.5 px-4 text-left font-semibold text-zinc-500 tracking-tight">Email</th>
+                               <th className="py-2.5 px-4 text-left font-semibold text-zinc-500 tracking-tight">Status</th>
                             </tr>
                          </thead>
-                         <tbody className="divide-y divide-[#f1f2f3]">
-                            <tr>
-                               <td className="p-4 font-bold text-[#202223]">Sarah Connor</td>
-                               <td className="p-4 text-[#6d7175]">sarah@skynet.com</td>
-                               <td className="p-4">
-                                  <span className="px-2 py-0.5 bg-[#e3f1df] text-[#008060] rounded-full text-[9px] font-black uppercase tracking-tight border border-[#bbe5b3]">Active</span>
+                         <tbody className="divide-y divide-zinc-100">
+                            <tr className="hover:bg-zinc-50/50 transition-colors">
+                               <td className="py-3 px-4 font-medium text-zinc-800">Sarah Connor</td>
+                               <td className="py-3 px-4 text-zinc-500 font-mono">sarah@skynet.com</td>
+                               <td className="py-3 px-4">
+                                  <span className="px-2 py-0.5 bg-zinc-100 text-zinc-800 rounded-md text-[9px] font-medium border border-zinc-200">Active</span>
                                </td>
                             </tr>
-                            <tr className="opacity-40 bg-[#fafafa]">
-                               <td className="p-4 font-bold text-[#202223]">Kyle Reese</td>
-                               <td className="p-4 text-[#6d7175]">kyle@rebel.org</td>
-                               <td className="p-4">
-                                  <span className="px-2 py-0.5 bg-[#f1f2f3] text-[#6d7175] rounded-full text-[9px] font-black uppercase tracking-tight border border-[#e1e3e5]">Pending</span>
+                            <tr className="opacity-45 bg-zinc-50/20">
+                               <td className="py-3 px-4 font-medium text-zinc-800">Kyle Reese</td>
+                               <td className="py-3 px-4 text-zinc-500 font-mono">kyle@rebel.org</td>
+                               <td className="py-3 px-4">
+                                  <span className="px-2 py-0.5 bg-zinc-50 text-zinc-400 rounded-md text-[9px] font-medium border border-zinc-200/50">Pending</span>
                                </td>
                             </tr>
                          </tbody>
@@ -159,28 +175,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Community Section */}
-      <section className="w-full py-32 bg-white border-y border-[#e1e3e5]">
-        <div className="container mx-auto px-4 md:px-8 text-center max-w-4xl space-y-12">
-           <h2 className="text-4xl font-black tracking-tighter text-[#202223] uppercase italic leading-none">Built to be Open and Free</h2>
-           <p className="text-[#6d7175] text-xl font-medium leading-relaxed">
-             We believe automation should be simple and open. Your data belongs to you, and we help you move it safely.
+      {/* Feature Focus Grid */}
+      <section className="w-full py-24 bg-[#fafafa] border-t border-zinc-200/80 relative z-10 dot-grid">
+        <div className="max-w-4xl mx-auto px-4 md:px-8 text-center space-y-10">
+           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-zinc-900 font-sans">Open Source Infrastructure</h2>
+           <p className="text-zinc-500 text-base font-normal leading-relaxed">
+             Deploy workflows directly to secure Google cloud environments. Maintain complete control of where your pipeline data goes.
            </p>
-           <div className="grid md:grid-cols-3 gap-8 text-center">
+           <div className="grid md:grid-cols-3 gap-6 text-center pt-4">
               {[
-                { title: "100% Free & Open", desc: "Anyone can see how it works. No hidden fees or secret rules." },
-                { title: "You Own Your Data", desc: "Move your data wherever you want. You're never stuck with us." },
-                { title: "Reliable & Fast", desc: "Built to handle your most important information without breaking." }
+                { title: "MIT Licensed", desc: "No subscriptions, usage limits, or payload limits. The pipeline is fully owned by you." },
+                { title: "Immutable Data Control", desc: "Payloads stream directly from endpoints to Google Sheets without saving to external databases." },
+                { title: "Start in 60s", desc: "Create an endpoint, copy the script to Google, and trigger requests in under a minute." }
               ].map((item, i) => (
-                <div key={i} className="space-y-3">
-                   <h4 className="font-black text-xs uppercase tracking-widest text-[#202223] italic">{item.title}</h4>
-                   <p className="text-sm text-[#6d7175] font-medium leading-relaxed">{item.desc}</p>
+                <div key={i} className="space-y-2 p-5 bg-white border border-zinc-200/80 rounded-xl shadow-[0_1px_2px_rgba(0,0,0,0.01)] text-left">
+                   <h4 className="font-semibold text-xs text-zinc-900 tracking-tight">{item.title}</h4>
+                   <p className="text-[11px] text-zinc-500 font-normal leading-relaxed">{item.desc}</p>
                 </div>
               ))}
            </div>
-           <div className="pt-8">
+           <div className="pt-6">
               <Link href="/login">
-                <Button size="lg" className="h-14 px-12 text-xs rounded-lg shadow-sm bg-[#008060] hover:bg-[#006e52] text-white transition-all font-black uppercase tracking-widest">
+                <Button size="lg" className="h-11 px-8 text-xs rounded-lg shadow-sm bg-zinc-950 hover:bg-zinc-800 text-white font-medium tracking-tight">
                   Create Your Free Account
                 </Button>
               </Link>
@@ -189,17 +205,17 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="w-full py-16 bg-[#f6f6f7]">
-        <div className="container mx-auto px-4 md:px-8 flex flex-col md:flex-row justify-between items-center gap-10">
-          <div className="flex items-center gap-4 text-[#202223] font-black text-2xl tracking-tighter italic uppercase">
-            <div className="bg-white border border-[#e1e3e5] p-2 rounded-xl text-[#008060] shadow-xs">
-              <FileSpreadsheet className="h-6 w-6" />
+      <footer className="w-full py-12 border-t border-zinc-200/80 bg-white relative z-10">
+        <div className="max-w-6xl mx-auto px-4 md:px-8 flex flex-col sm:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-2 text-zinc-900 font-semibold text-[15px] tracking-tight">
+            <div className="bg-zinc-950 border border-zinc-800 p-1.5 rounded-lg text-white shadow-sm">
+              <FileSpreadsheet className="h-4 w-4" />
             </div>
             <span>SheetFlow</span>
           </div>
-          <div className="flex items-center gap-10 text-[10px] font-black uppercase tracking-widest text-[#6d7175]">
-             <Link href="https://github.com/bureaucrat-svg/sheetflow" className="hover:text-[#008060] transition-colors">Documentation</Link>
-             <Link href="https://github.com/bureaucrat-svg/sheetflow" className="hover:text-[#008060] transition-colors">GitHub Protocol</Link>
+          <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-zinc-400">
+             <Link href="https://github.com/bureaucrat-svg/sheetflow" className="hover:text-zinc-900 transition-colors">Documentation</Link>
+             <Link href="https://github.com/bureaucrat-svg/sheetflow" className="hover:text-zinc-900 transition-colors">GitHub Repository</Link>
              <span>© 2026 MIT License</span>
           </div>
         </div>
